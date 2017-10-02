@@ -1,0 +1,59 @@
+﻿@model Nutrimeal.ViewModels.NewMedidaViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<h2>Novo</h2>
+
+<div class="form-group">
+    <form asp-action="New" asp-controller="Medidas">
+        <div>
+            <label asp-for="@Model.MedidaInput.Altura"></label>
+            <div>
+                <input asp-for="@Model.MedidaInput.Altura" />
+                <span asp-validation-for="@Model.MedidaInput.Altura" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.MedidaInput.Peso"></label>
+            <div>
+                <input asp-for="@Model.MedidaInput.Peso" />
+                <span asp-validation-for="@Model.MedidaInput.Peso" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div>
+            <label asp-for="@Model.MedidaInput.Pescoco"></label>
+            <div>
+                <input asp-for="@Model.MedidaInput.Pescoco" />
+                <span asp-validation-for="@Model.MedidaInput.Pescoco" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div>
+            <label asp-for="@Model.MedidaInput.Cintura"></label>
+            <div>
+                <input asp-for="@Model.MedidaInput.Cintura" />
+                <span asp-validation-for="@Model.MedidaInput.Cintura" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div>
+            <label asp-for="@Model.MedidaInput.Quadris"></label>
+            <div>
+                <input asp-for="@Model.MedidaInput.Quadris" />
+                <span asp-validation-for="@Model.MedidaInput.Quadris" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.MedidaInput.DataMedicao"></label>
+            <div>
+                <input asp-for="@Model.MedidaInput.DataMedicao" type="date" />
+                <span asp-validation-for="@Model.MedidaInput.DataMedicao" class="text-danger"></span>
+            </div>
+        </div>
+        <hr />
+        <button type="submit" class="btn btn-info">Criar</button>
+
+    </form>
+</div>

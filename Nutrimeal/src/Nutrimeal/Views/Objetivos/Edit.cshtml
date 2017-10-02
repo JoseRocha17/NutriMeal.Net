@@ -1,0 +1,52 @@
+﻿@model Nutrimeal.ViewModels.EditObjetivoViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<h2>Editar</h2>
+
+<div class="form-group">
+    <form asp-action="Edit" asp-controller="Objetivos">
+        <div>
+            <input type="hidden" asp-for="@Model.ObjetivoInList.ObjetivosId" />
+            <label asp-for="@Model.ObjetivoInList.Peso"></label>
+            <div>
+                <input asp-for="@Model.ObjetivoInList.Peso" />
+                <span asp-validation-for="@Model.ObjetivoInList.Peso" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div>
+            <label asp-for="@Model.ObjetivoInList.Pescoco"></label>
+            <div>
+                <input asp-for="@Model.ObjetivoInList.Pescoco" />
+                <span asp-validation-for="@Model.ObjetivoInList.Pescoco" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.ObjetivoInList.Cintura"></label>
+            <div>
+                <input asp-for="@Model.ObjetivoInList.Cintura" />
+                <span asp-validation-for="@Model.ObjetivoInList.Cintura" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.ObjetivoInList.Quadris"></label>
+            <div>
+                <input asp-for="@Model.ObjetivoInList.Quadris" />
+                <span asp-validation-for="@Model.ObjetivoInList.Quadris" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.ObjetivoInList.DataObjetivo"> <b>Data de Nascimento:</b> @Model.ObjetivoInList.DataObjetivo.ToString("dd/MM/yyyy")</label>
+            <div>
+                <input asp-for="@Model.ObjetivoInList.DataObjetivo" type="date"/>
+                <span asp-validation-for="@Model.ObjetivoInList.DataObjetivo" class="text-danger"></span>
+            </div>
+        </div>
+       
+        <br />
+        <button type="submit" class="btn btn-info">Save</button>
+    </form>
+</div>
+

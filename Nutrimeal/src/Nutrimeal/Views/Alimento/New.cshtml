@@ -1,0 +1,93 @@
+﻿@model Nutrimeal.ViewModels.NewAlimentoViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<h2>Novo</h2>
+
+<div class="form-group">
+    <form asp-action="New" asp-controller="Alimento">
+        <div>
+            <label asp-for="@Model.AlimentoInput.Nome"></label>
+            <div>
+                <input asp-for="@Model.AlimentoInput.Nome" />
+                <span asp-validation-for="@Model.AlimentoInput.Nome" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.AlimentoInput.Calorias"></label>
+            <div>
+                <input asp-for="@Model.AlimentoInput.Calorias" />
+                <span asp-validation-for="@Model.AlimentoInput.Calorias" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.AlimentoInput.Gordura"></label>
+            <div>
+                <input asp-for="@Model.AlimentoInput.Gordura" />
+                <span asp-validation-for="@Model.AlimentoInput.Gordura" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.AlimentoInput.Colestrol"></label>
+            <div>
+                <input asp-for="@Model.AlimentoInput.Colestrol" />
+                <span asp-validation-for="@Model.AlimentoInput.Colestrol" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.AlimentoInput.Sodio"></label>
+            <div>
+                <input asp-for="@Model.AlimentoInput.Sodio" />
+                <span asp-validation-for="@Model.AlimentoInput.Sodio" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.AlimentoInput.Potassio"></label>
+            <div>
+                <input asp-for="@Model.AlimentoInput.Potassio" />
+                <span asp-validation-for="@Model.AlimentoInput.Potassio" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.AlimentoInput.Carboidrato"></label>
+            <div>
+                <input asp-for="@Model.AlimentoInput.Carboidrato" />
+                <span asp-validation-for="@Model.AlimentoInput.Carboidrato" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.AlimentoInput.Fibra"></label>
+            <div>
+                <input asp-for="@Model.AlimentoInput.Fibra" />
+                <span asp-validation-for="@Model.AlimentoInput.Fibra" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.AlimentoInput.Acucar"></label>
+            <div>
+                <input asp-for="@Model.AlimentoInput.Acucar" />
+                <span asp-validation-for="@Model.AlimentoInput.Acucar" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.AlimentoInput.Proteina"></label>
+            <div>
+                <input asp-for="@Model.AlimentoInput.Proteina" />
+                <span asp-validation-for="@Model.AlimentoInput.Proteina" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.AlimentoInput.Grupo"></label>
+            <div>
+                <select asp-for="@Model.AlimentoInput.Grupo" asp-items="Html.GetEnumSelectList<Nutrimeal.Models.GrupoAlimento>()">
+                    >
+                </select>
+                <span asp-validation-for="@Model.AlimentoInput.Nome" class="text-danger"></span>
+            </div>
+        </div>
+        <hr />
+        <button type="submit" class="btn btn-info">Criar</button>
+
+    </form>
+</div>

@@ -1,0 +1,28 @@
+﻿@model Nutrimeal.ViewModels.DetailsAtributoViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<div>
+    <h1>Detalhes</h1>
+</div>
+
+<table class="table table-Hover">
+    <tr>
+        <th>Nome</th>
+        <td>@Model.Item.Nome</td>
+    </tr>
+</table>
+
+
+@*<div>
+    <h4><b>Nome:</b> @Model.Item.Nome</h4>
+</div>*@
+
+
+@*<a asp-action="New"
+   asp-controller="QuantidadeAlimentar"
+   asp-route-id="@Model.Item.RefeicaoId"
+   class="btn btn-primary">
+   Adicionar Alimento
+</a>*@

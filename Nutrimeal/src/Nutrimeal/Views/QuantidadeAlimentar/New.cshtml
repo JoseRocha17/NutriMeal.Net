@@ -1,0 +1,37 @@
+﻿@model Nutrimeal.ViewModels.NewQuantidadeAlimentarViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<h2>Novo</h2>
+
+<div class="form-group">
+    <form asp-action="New" asp-controller="QuantidadeAlimentar">
+        <div>
+            <label asp-for="@Model.QuantidadeAlimentarInput.Quantidade"></label>
+            <div>
+                <input asp-for="@Model.QuantidadeAlimentarInput.Quantidade" />
+                <span asp-validation-for="@Model.QuantidadeAlimentarInput.Quantidade" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.QuantidadeAlimentarInput.TipoMedida"></label>
+            <div>
+                <select asp-for="@Model.QuantidadeAlimentarInput.TipoMedida" asp-items="Html.GetEnumSelectList<Nutrimeal.Models.TipoQuantidade>()">
+                    >
+                </select>
+                <span asp-validation-for="@Model.QuantidadeAlimentarInput.TipoMedida" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.QuantidadeAlimentarInput.AlimentoId"></label>
+            <select asp-for="@Model.QuantidadeAlimentarInput.AlimentoId"
+                    asp-items="@(new SelectList(Model.Items,"AlimentoId","Nome"))">
+                <option>Please select one</option>
+            </select>
+        </div>
+            <hr />
+            <button type="submit" class="btn btn-info">Criar</button>
+
+</form>
+</div>

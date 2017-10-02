@@ -1,0 +1,28 @@
+﻿@model Nutrimeal.ViewModels.NewExercicioAtributoViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<h2>Novo</h2>
+
+<div class="form-group">
+    <form asp-action="New" asp-controller="ExercicioAtributo">
+        <div>
+            <label asp-for="@Model.ExercicioAtributoInput.AtributoId"></label>
+            <select asp-for="@Model.ExercicioAtributoInput.AtributoId"
+                    asp-items="@(new SelectList(Model.Items,"AtributoId","Nome"))">
+                <option>Please select one</option>
+            </select>
+        </div>
+        <div>
+            <label asp-for="@Model.ExercicioAtributoInput.Valor"></label>
+            <div>
+                <input asp-for="@Model.ExercicioAtributoInput.Valor" />
+                <span asp-validation-for="@Model.ExercicioAtributoInput.Valor" class="text-danger"></span>
+            </div>
+        </div>
+        <hr />
+        <button type="submit" class="btn btn-info">Criar</button>
+
+    </form>
+</div>

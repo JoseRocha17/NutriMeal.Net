@@ -1,0 +1,161 @@
+﻿@model Nutrimeal.ViewModels.DetailsPerfilFisicoViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<div>
+    <h1 align="center">Detalhes do Perfil Alimentar: @Model.Item.Nome</h1>
+</div>
+
+<br />
+
+<table class="table table-hover">
+    <tr>
+        <th>Nome do Perfil</th>
+        <td>@Model.Item.Nome</td>
+    </tr>
+    <tr>
+        <th>Data do Perfil</th>
+        <td>@Model.Item.Data.ToString("dd/MM/yyyy")</td>
+    </tr>
+</table>
+
+
+@*<div>
+    <h4><b>Peso:</b> @Model.Item.Nome</h4>
+    <h4><b>Data do Objetivo:</b> @Model.Item.Data.ToString("dd/MM/yyyy")</h4>
+</div>*@
+
+
+
+<h2>Exercicios</h2>
+
+<table id='Candidate_table' class='table table-bordered table-hover'>
+@if (@Model.Items.Count() > 0)
+{
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Calorias a gastar</th>
+            <th>Opções</th>
+
+
+        </tr>
+    </thead>
+
+
+
+   
+       @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td> @item.ExercicioNome </td>
+                <td> @item.Calorias </td>
+
+                <td>
+
+                    <a asp-controller="MetaExercicio"
+                       asp-action="Delete"
+                       asp-route-id="@item.MetaExercicioId"
+                       class="badge badge-default badge-pill pull-right">
+                        Delete
+                    </a>
+
+                    <a asp-controller="MetaExercicio"
+                       asp-action="Edit"
+                       asp-route-id="@item.MetaExercicioId"
+                       class="badge badge-default badge-pill pull-right">
+                        Editar
+                    </a>
+
+                    <a asp-controller="MetaExercicio"
+                       asp-action="Details"
+                       asp-route-id="@item.MetaExercicioId"
+                       class="badge badge-default badge-pill pull-right">
+                        Detalhes
+                    </a>
+
+                    <a asp-action="New"
+                       asp-controller="ExercicioAtributo"
+                       asp-route-id="@item.MetaExercicioId"
+                       class="badge badge-default badge-pill">
+                        Adicionar Atributo ao Exercicio
+                    </a>
+
+
+                   @Html.ActionLink("Ver Atributos", "Details", new { MetaExercicioId = item.MetaExercicioId, MetaExercicioNome = item.ExercicioNome  })
+
+                </td>
+
+
+            </tr>
+        }
+
+    }
+    else
+    {
+        <tr> O plano ainda não tem exercicios atribuídos! </tr>
+    }
+</table>
+<br />
+<a asp-action="New"
+   asp-controller="MetaExercicio"
+   asp-route-id="@Model.Item.PerfilFisicoId"
+   class="badge badge-default badge-pill pull-left">
+    Adicionar Exercicio ao Plano
+</a>
+
+<hr />
+
+@*<a asp-action="Index"
+   asp-controller="MetaExercicio"
+   asp-route-id="@Model.Item.PerfilFisicoId"
+   class="badge badge-default badge-pill pull-left">
+    Ver Exercicios do Plano
+</a>*@
+
+
+
+
+<br />
+
+@if (Model.ExercicioAtributos.Count()>0)
+{
+    <h2>Atributos do Exercicio @Model.MetaExercicioNome</h2>
+    <table id='Candidate_table' class='table table-bordered table-hover'>
+        <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+
+
+
+            @foreach (var item in Model.ExercicioAtributos)
+            {
+                <tr>
+                    <td> @item.AtributoNome </td>
+                    <td> @item.Valor </td>
+                    
+
+                    <td>
+
+                        <a asp-controller="ExercicioAtributo"
+                           asp-action="Details"
+                           asp-route-id="@item.ExercicioAtributoId"
+                           class="badge badge-default badge-pill pull-right">
+                            Detalhes
+                        </a>
+
+                    </td>
+
+                </tr>
+            }
+
+
+    </table>
+
+
+
+}

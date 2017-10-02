@@ -1,0 +1,110 @@
+﻿@model Nutrimeal.ViewModels.AtributoListViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<h2>Objetivos</h2>
+
+<table id='Candidate_table' class='table table-bordered table-hover'>
+    <thead>
+        <tr>
+            <th>Nome</th>
+        </tr>
+    </thead>
+
+
+
+    @if (@Model.Items.Count != 0)
+    {
+        foreach (var item in Model.Items)
+        {
+            <tr>
+                <td> @item.Nome </td>
+                <td>
+
+                    <a asp-controller="Atributo"
+                       asp-action="Details"
+                       asp-route-id="@item.AtributoId"
+                       class="badge badge-default badge-pill pull-right">
+                        Detalhes
+                    </a>
+
+                    <a asp-controller="Atributo"
+                       asp-action="Edit"
+                       asp-route-id="@item.AtributoId"
+                       class="badge badge-default badge-pill pull-right">
+                        Editar
+                    </a>
+
+                    <a asp-controller="Atributo"
+                       asp-action="Delete"
+                       asp-route-id="@item.AtributoId"
+                       class="badge badge-default badge-pill pull-right">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+    }
+    else
+    {
+        <tr> Ainda não foi submetido qualquer objetivo </tr>
+    }
+</table>
+
+<div id="New_Candidate">
+    <a asp-area="" asp-action="New" class="btn btn-success">Novo</a>
+</div>
+
+
+@*@section scripts
+{
+    <script language="javascript">
+
+            var ListObjetivos = function () {
+
+                function getAll() {
+                    $.ajax({
+                        type: "GET",
+                        url: "/api/Objetivos/List",
+                        sucess: function () {
+                        }
+                    }).done(function (arg) {
+                        if (arg.HasError) {
+                            alert("Error ");
+                        } else {
+                            var body = $("#Candidate_table");
+                            $.each(arg.Items, function (item) {
+
+                                $(
+                                    "<tbody>" +
+                                    "<tr><td><a href=Objetivo/Single/" + this.ObjetivosId + "><h4>" + this.Peso + "</td> </a>"
+                                    + "<td>" + this.Pescoco + "</td>"
+                                    +"<td>" +  this.Cintura + "</td>"
+                                    + "<td>" + this.Quadris + "</td>"
+                                    + "<td>" + this.DataObjetivo + "</td>"
+                                    //+ "<td>" + this.DateStatus + "</td>"
+                                    +"</p></tr></tbody>").appendTo(body);
+                            })
+                        }
+                    });
+                }
+
+                return {
+                    getAll: getAll
+                }
+            };
+
+
+            $(document).ready(function () {
+
+                var objetivoManager = new ListObjetivos();
+                objetivoManager.getAll();
+
+            });
+        
+    </script>
+}*@

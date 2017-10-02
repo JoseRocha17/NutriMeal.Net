@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B7774686-0779-4C5B-8EE2-907252040B39}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Nutrimeal.Domain</RootNamespace>
+    <AssemblyName>Nutrimeal.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contracts\Manager\IAlimentoManager.cs" />
+    <Compile Include="Contracts\Manager\IAtributoManager.cs" />
+    <Compile Include="Contracts\Manager\IExercicioAtributoManager.cs" />
+    <Compile Include="Contracts\Manager\IExercicioManager.cs" />
+    <Compile Include="Contracts\Manager\IMedidasManager.cs" />
+    <Compile Include="Contracts\Manager\IMetaExercicioManager.cs" />
+    <Compile Include="Contracts\Manager\IObjetivosManager.cs" />
+    <Compile Include="Contracts\Manager\IPerfilAlimentarManager.cs" />
+    <Compile Include="Contracts\Manager\IPerfilFisicoManager.cs" />
+    <Compile Include="Contracts\Manager\IQuantidadeAlimentarManager.cs" />
+    <Compile Include="Contracts\Manager\IRefeicaoManager.cs" />
+    <Compile Include="Contracts\Repository\IAlimentoRepository.cs" />
+    <Compile Include="Contracts\Repository\IAtributoRepository.cs" />
+    <Compile Include="Contracts\Repository\IExercicioAtributoRepository.cs" />
+    <Compile Include="Contracts\Repository\IExercicioRepository.cs" />
+    <Compile Include="Contracts\Repository\IMedidasRepository.cs" />
+    <Compile Include="Contracts\Repository\IMetaExercicioRepository.cs" />
+    <Compile Include="Contracts\Repository\IObjetivosRepository.cs" />
+    <Compile Include="Contracts\Repository\IPerfilAlimentarRepository.cs" />
+    <Compile Include="Contracts\Repository\IPerfilFisicoRepository.cs" />
+    <Compile Include="Contracts\Repository\IQuantidadeAlimentarRepository.cs" />
+    <Compile Include="Contracts\Repository\IRefeicaoRepository.cs" />
+    <Compile Include="Contracts\Repository\IRepositoryBase.cs" />
+    <Compile Include="Entities\Alimento.cs" />
+    <Compile Include="Entities\Atributo.cs" />
+    <Compile Include="Entities\EntitiesBase.cs" />
+    <Compile Include="Entities\EnumGrupo.cs" />
+    <Compile Include="Entities\EnumTipoExercicio.cs" />
+    <Compile Include="Entities\EnumTipoQuantidade.cs" />
+    <Compile Include="Entities\Exercicio.cs" />
+    <Compile Include="Entities\ExercicioAtributo.cs" />
+    <Compile Include="Entities\Medidas.cs" />
+    <Compile Include="Entities\MetaExercicio.cs" />
+    <Compile Include="Entities\Objetivos.cs" />
+    <Compile Include="Entities\PerfilAlimentar.cs" />
+    <Compile Include="Entities\PerfilFisico.cs" />
+    <Compile Include="Entities\QuantidadeAlimentar.cs" />
+    <Compile Include="Entities\Refeicao.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Nutrimeal.Models\Nutrimeal.Models.csproj">
+      <Project>{8dfcd0f9-450d-4c13-8251-b7c28ab49658}</Project>
+      <Name>Nutrimeal.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

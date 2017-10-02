@@ -1,0 +1,38 @@
+﻿@model Nutrimeal.ViewModels.DetailsExercicioAtributoViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<div>
+    <h1>Detalhes</h1>
+</div>
+
+<table class="table table-hover">
+    <tr>
+        <th>Exercicio</th>
+        <td>@Model.ExercicioNome</td>
+    </tr>
+    <tr>
+        <th>Atributo</th>
+        <td>@Model.AtributoNome</td>
+    </tr>
+    <tr>
+        <th>Valor</th>
+        <td>@Model.Item.Valor</td>
+    </tr>
+</table>
+
+
+@*<div>
+    <h4><b>Exercicio:</b> @Model.ExercicioNome</h4>
+    <h4><b>Atributo:</b> @Model.AtributoNome</h4>
+    <h4><b>Valor:</b> @Model.Item.Valor</h4>
+</div>*@
+
+
+@*<a asp-action="New"
+   asp-controller="QuantidadeAlimentar"
+   asp-route-id="@Model.Item.RefeicaoId"
+   class="btn btn-primary">
+   Adicionar Alimento
+</a>*@

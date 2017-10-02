@@ -1,0 +1,39 @@
+﻿@model Nutrimeal.ViewModels.EditExercicioViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<h2>Editar</h2>
+
+<div class="form-group">
+    <form asp-action="Edit" asp-controller="Exercicio">
+        <div>
+            <input type="hidden" asp-for="@Model.ExercicioOnList.ExercicioId" />
+            <label asp-for="@Model.ExercicioOnList.Nome"></label>
+            <div>
+                <input asp-for="@Model.ExercicioOnList.Nome" />
+                <span asp-validation-for="@Model.ExercicioOnList.Nome" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.ExercicioOnList.Tipo"></label>
+            <div>
+                <select asp-for="@Model.ExercicioOnList.Tipo" asp-items="Html.GetEnumSelectList<Nutrimeal.Models.TipoExercicio>()">
+                    >
+                </select>
+                <span asp-validation-for="@Model.ExercicioOnList.Tipo" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.ExercicioOnList.Descricao"></label>
+            <div>
+                <input asp-for="@Model.ExercicioOnList.Descricao" />
+                <span asp-validation-for="@Model.ExercicioOnList.Descricao" class="text-danger"></span>
+            </div>
+        </div>
+       
+        <br />
+        <button type="submit" class="btn btn-info">Save</button>
+    </form>
+</div>
+

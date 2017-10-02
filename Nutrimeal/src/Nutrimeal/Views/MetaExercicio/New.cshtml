@@ -1,0 +1,29 @@
+﻿@model Nutrimeal.ViewModels.NewMetaExercicioViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<h2>Novo</h2>
+
+<div class="form-group">
+    <form asp-action="New" asp-controller="MetaExercicio">
+        <div>
+            <label asp-for="@Model.MetaExercicioInput.Calorias"></label>
+            <div>
+                <input asp-for="@Model.MetaExercicioInput.Calorias" />
+                <span asp-validation-for="@Model.MetaExercicioInput.Calorias" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.MetaExercicioInput.ExercicioId"></label>
+            <select asp-for="@Model.MetaExercicioInput.ExercicioId"
+                    asp-items="@(new SelectList(Model.Items,"ExercicioId","Nome"))">
+                <option>Please select one</option>
+            </select>
+        </div>
+        
+        <hr />
+        <button type="submit" class="btn btn-info">Criar</button>
+
+    </form>
+</div>

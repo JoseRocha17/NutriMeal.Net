@@ -1,0 +1,56 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model Nutrimeal.ViewModels.AdminListViewModel
+@inject UserManager<ApplicationUser> userManager
+
+
+<h1 align="center">Painel Admnistrativo</h1>
+
+
+<hr />
+<h3>Utilizadores</h3>
+<br />
+
+<table class='table table-bordered table-hover'>
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Detalhes</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td><a asp-controller="Admin" asp-action="UserDetails" asp-route-id="@user.Id">Ver Detalhes</a> </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+
+<hr />
+
+<h3>Alimentos e Exercicio Fisico</h3>
+<br />
+<a asp-action="Index"
+   asp-controller="Alimento"
+   class="btn btn-primary">
+    Ver Alimentos
+</a>
+
+<a asp-action="Index"
+   asp-controller="Exercicio"
+   class="btn btn-primary">
+    Ver Exercícios
+</a>
+
+<a asp-action="Index"
+   asp-controller="Atributo"
+   class="btn btn-primary">
+    Atributos dos Exercicios
+</a>
+
+<hr />

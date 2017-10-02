@@ -1,0 +1,52 @@
+﻿@model Nutrimeal.ViewModels.NewObjetivoViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<h2>Novo</h2>
+
+<div class="form-group">
+    <form asp-action="New" asp-controller="Objetivos">
+        <div>
+            <label asp-for="@Model.ObjetivoInput.Peso"></label>
+            <div>
+                <input asp-for="@Model.ObjetivoInput.Peso" />
+                <span asp-validation-for="@Model.ObjetivoInput.Peso" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div>
+            <label asp-for="@Model.ObjetivoInput.Pescoco"></label>
+            <div>
+                <input asp-for="@Model.ObjetivoInput.Pescoco" />
+                <span asp-validation-for="@Model.ObjetivoInput.Pescoco" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div>
+            <label asp-for="@Model.ObjetivoInput.Cintura"></label>
+            <div>
+                <input asp-for="@Model.ObjetivoInput.Cintura" />
+                <span asp-validation-for="@Model.ObjetivoInput.Cintura" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div>
+            <label asp-for="@Model.ObjetivoInput.Quadris"></label>
+            <div>
+                <input asp-for="@Model.ObjetivoInput.Quadris" />
+                <span asp-validation-for="@Model.ObjetivoInput.Quadris" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.ObjetivoInput.DataObjetivo"></label>
+            <div>
+                <input asp-for="@Model.ObjetivoInput.DataObjetivo" type="date" />
+                <span asp-validation-for="@Model.ObjetivoInput.DataObjetivo" class="text-danger"></span>
+            </div>
+        </div>
+        <hr />
+        <button type="submit" class="btn btn-info">Criar</button>
+
+    </form>
+</div>

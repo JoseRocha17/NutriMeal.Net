@@ -1,0 +1,54 @@
+﻿@model Nutrimeal.ViewModels.UserHomeViewModel
+
+<h1 align="center">Painel Utilizador</h1>
+
+<hr />
+<a asp-action="New"
+   asp-controller="PerfilAlimentar"
+   asp-route-id="@Model.UserId"
+   class="btn btn-primary">
+    Criar Perfil Alimentar
+</a>
+
+<a asp-action="Index"
+   asp-controller="PerfilAlimentar"
+   asp-route-id="@Model.UserId"
+   class="btn btn-primary">
+    Ver Perfis Alimentares
+</a>
+
+<hr />
+
+<a asp-action="New"
+   asp-controller="PerfilFisico"
+   asp-route-id="@Model.UserId"
+   class="btn btn-primary">
+    Criar Perfil Físico
+</a>
+
+<a asp-action="Index"
+   asp-controller="PerfilFisico"
+   asp-route-id="@Model.UserId"
+   class="btn btn-primary">
+    Ver Perfis Fisicos
+</a>
+
+<hr />
+
+<a asp-action="Index"
+   asp-controller="Alimento"
+   class="btn btn-primary">
+    Alimentos
+</a>
+
+<hr />
+<a asp-action="Index"
+   asp-controller="Exercicio"
+   class="btn btn-primary">
+    Exercicios
+</a>
+
+
+
+
+

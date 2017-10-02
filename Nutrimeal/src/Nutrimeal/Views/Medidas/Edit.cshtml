@@ -1,0 +1,60 @@
+﻿@model Nutrimeal.ViewModels.EditMedidaViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<h2>Editar</h2>
+
+<div class="form-group">
+    <form asp-action="Edit" asp-controller="Medidas">
+        <div>
+            <input type="hidden" asp-for="@Model.MedidaInList.MedidaId" />
+            <label asp-for="@Model.MedidaInList.Altura"></label>
+            <div>
+                <input asp-for="@Model.MedidaInList.Altura" />
+                <span asp-validation-for="@Model.MedidaInList.Altura" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div>
+            <label asp-for="@Model.MedidaInList.Peso"></label>
+            <div>
+                <input asp-for="@Model.MedidaInList.Peso" />
+                <span asp-validation-for="@Model.MedidaInList.Peso" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div>
+            <label asp-for="@Model.MedidaInList.Pescoco"></label>
+            <div>
+                <input asp-for="@Model.MedidaInList.Pescoco" />
+                <span asp-validation-for="@Model.MedidaInList.Pescoco" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.MedidaInList.Cintura"></label>
+            <div>
+                <input asp-for="@Model.MedidaInList.Cintura" />
+                <span asp-validation-for="@Model.MedidaInList.Cintura" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.MedidaInList.Quadris"></label>
+            <div>
+                <input asp-for="@Model.MedidaInList.Quadris" />
+                <span asp-validation-for="@Model.MedidaInList.Quadris" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.MedidaInList.DataMedicao"> <b>Data de Nascimento:</b> @Model.MedidaInList.DataMedicao.ToString("dd/MM/yyyy")</label>
+            <div>
+                <input asp-for="@Model.MedidaInList.DataMedicao" type="date"/>
+                <span asp-validation-for="@Model.MedidaInList.DataMedicao" class="text-danger"></span>
+            </div>
+        </div>
+       
+        <br />
+        <button type="submit" class="btn btn-info">Save</button>
+    </form>
+</div>
+

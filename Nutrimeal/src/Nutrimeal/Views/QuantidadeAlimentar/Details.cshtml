@@ -1,0 +1,31 @@
+﻿@model Nutrimeal.ViewModels.DetailsQuantidadeAlimentarViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<div>
+    <h1>Detalhes</h1>
+</div>
+
+<table class="table table-hover">
+    <tr>
+        <th>Refeição</th>
+        <td>@Model.Refeicao</td>
+    </tr>
+    <tr>
+        <th>Alimento</th>
+        <td>@Model.Item.AlimentoNome</td>
+    </tr>
+    <tr>
+        <th>Quantidade</th>
+        <td>@Model.Item.Quantidade @Model.Item.TipoMedida</td>
+    </tr>
+
+</table>
+
+
+@*<div>
+    <h4><b>Refeição:</b> @Model.Refeicao</h4>
+    <h4><b>Quantidade:</b> @Model.Item.Quantidade @Model.Item.TipoMedida</h4>
+</div>*@
+

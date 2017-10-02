@@ -1,0 +1,46 @@
+﻿@model Nutrimeal.ViewModels.DetailsRefeicaoViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<div>
+    <h1>Detalhes</h1>
+</div>
+
+<table class="table table-hover">
+    <tr>
+        <th>Perfil</th>
+        <td>@Model.PerfilAlimentarNome</td>
+    </tr>
+    <tr>
+        <th>Data do Perfil</th>
+        <td>@Model.PerfilAlimentarData.ToString("dd/MM/yyyy")</td>
+    </tr>
+    <tr>
+        <th>Refeição</th>
+        <td>@Model.Item.Nome</td>
+    </tr>
+
+</table>
+
+
+@*<div>
+    <h4><b>Perfil:</b> @Model.PerfilAlimentarNome</h4>
+    <h4><b>Data:</b> @Model.PerfilAlimentarData.ToString("dd/MM/yyyy")</h4>
+    <h4><b>Refeição:</b> @Model.Item.Nome</h4>
+</div>*@
+<hr />
+
+<a asp-action="New"
+   asp-controller="QuantidadeAlimentar"
+   asp-route-id="@Model.Item.RefeicaoId"
+   class="btn btn-primary">
+   Adicionar Alimento
+</a>
+
+<a asp-action="Index"
+   asp-controller="QuantidadeAlimentar"
+   asp-route-id="@Model.Item.RefeicaoId"
+   class="btn btn-primary">
+    Ver Alimentos da Refeição
+</a>

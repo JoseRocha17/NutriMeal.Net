@@ -1,0 +1,63 @@
+﻿@model Nutrimeal.ViewModels.AlimentoListViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<h2>Alimentos</h2>
+
+<table id='Candidate_table' class='table table-bordered table-hover'>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Grupo</th>
+
+        </tr>
+    </thead>
+
+
+
+    @if (@Model.Items.Count != 0)
+    {
+        foreach (var item in Model.Items)
+        {
+            <tr>
+                <td> @item.Nome </td>
+                <td> @item.Grupo </td>
+                <td>
+
+                    <a asp-controller="Alimento"
+                       asp-action="Details"
+                       asp-route-id="@item.AlimentoId"
+                       class="badge badge-default badge-pill pull-right">
+                        Detalhes
+                    </a>
+
+                    <a asp-controller="Alimento"
+                       asp-action="Edit"
+                       asp-route-id="@item.AlimentoId"
+                       class="badge badge-default badge-pill pull-right">
+                        Editar
+                    </a>
+
+                    <a asp-controller="Alimento"
+                       asp-action="Delete"
+                       asp-route-id="@item.AlimentoId"
+                       class="badge badge-default badge-pill pull-right">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+    }
+    else
+    {
+        <tr> Ainda não foi submetido qualquer objetivo </tr>
+    }
+</table>
+
+<div id="New_Candidate">
+    <a asp-area="" asp-action="New" class="btn btn-success">Novo</a>
+</div>

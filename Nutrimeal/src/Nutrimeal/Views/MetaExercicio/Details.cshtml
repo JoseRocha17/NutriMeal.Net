@@ -1,0 +1,45 @@
+﻿@model Nutrimeal.ViewModels.DetailsMetaExercicioViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<div>
+    <h1>Detalhes</h1>
+</div>
+
+
+<table class="table table-hover">
+    <tr>
+        <th>Perfil Fisico</th>
+        <td>@Model.PerfilFisicoNome</td>
+    </tr>
+    <tr>
+        <th>Exercício</th>
+        <td>@Model.Exercicio</td>
+    </tr>
+    <tr>
+        <th>Calorias a queimar</th>
+        <td>@Model.Item.Calorias</td>
+    </tr>
+</table>
+
+
+@*<div>
+    <h4><b>PerFil:</b> @Model.PerfilFisicoNome</h4>
+    <h4><b>Exercicio:</b> @Model.Exercicio</h4>
+    <h4><b>Calorias a gastar:</b> @Model.Item.Calorias</h4>
+</div>*@
+
+<hr />
+<a asp-action="New"
+   asp-controller="ExercicioAtributo"
+   asp-route-id="@Model.Item.MetaExercicioId"
+   class="btn btn-primary">
+    Adicionar Exercicio ao Plano
+</a>
+<a asp-action="Index"
+   asp-controller="ExercicioAtributo"
+   asp-route-id="@Model.Item.MetaExercicioId"
+   class="btn btn-primary">
+    Ver Exercicios do Plano
+</a>

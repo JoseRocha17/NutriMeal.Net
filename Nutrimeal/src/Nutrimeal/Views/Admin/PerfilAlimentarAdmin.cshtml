@@ -1,0 +1,29 @@
+﻿@model Nutrimeal.ViewModels.NewPerfilAlimentarViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<h2>Novo Perfil Alimentar</h2>
+
+
+<div class="form-group">
+    <form asp-action="New" asp-controller="PerfilAlimentar">
+        <div>
+            <label asp-for="@Model.PerfilAlimentarInput.Nome"></label>
+            <div>
+                <input asp-for="@Model.PerfilAlimentarInput.Nome" />
+                <span asp-validation-for="@Model.PerfilAlimentarInput.Nome" class="text-danger"></span>
+            </div>
+        </div>
+        <div>
+            <label asp-for="@Model.PerfilAlimentarInput.Data"></label>
+            <div>
+                <input asp-for="@Model.PerfilAlimentarInput.Data" type="date" />
+                <span asp-validation-for="@Model.PerfilAlimentarInput.Data" class="text-danger"></span>
+            </div>
+        </div>
+        <hr />
+        <button type="submit" class="btn btn-info">Criar</button>
+
+    </form>
+</div>

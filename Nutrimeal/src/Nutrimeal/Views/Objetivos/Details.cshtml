@@ -1,0 +1,42 @@
+﻿@model Nutrimeal.ViewModels.DetailsObjetivoViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<div>
+    <h1>Detalhes</h1>
+</div>
+
+<table class="table table-hover">
+    <tr>
+        <th>Peso</th>
+        <td>@Model.Item.Peso</td>
+    </tr>
+    <tr>
+        <th>Pescoço</th>
+        <td>@Model.Item.Pescoco</td>
+    </tr>
+    <tr>
+        <th>Cintura</th>
+        <td>@Model.Item.Cintura</td>
+    </tr>
+    <tr>
+        <th>Quadris</th>
+        <td>@Model.Item.Quadris</td>
+    </tr>
+    <tr>
+        <th>Data do objetivo</th>
+        <td>@Model.Item.DataObjetivo.ToString("dd/MM/yyyy")</td>
+    </tr>
+
+</table>
+
+
+@*<div>
+    <h4><b>Peso:</b> @Model.Item.Peso</h4>
+    <h4><b>Pescoço:</b> @Model.Item.Pescoco</h4>
+    <h4><b>Cintura:</b> @Model.Item.Cintura</h4>
+    <h4><b>Quadris:</b> @Model.Item.Quadris</h4>
+    <h4><b>Data do Objetivo:</b> @Model.Item.DataObjetivo.ToString("dd/MM/yyyy")</h4>
+</div>*@
+

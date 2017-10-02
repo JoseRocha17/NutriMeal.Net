@@ -1,0 +1,32 @@
+﻿@model Nutrimeal.ViewModels.DetailsExercicioViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<div>
+    <h1>Detalhes</h1>
+</div>
+
+<table class="table table-hover">
+    <tr>
+        <th>Nome</th>
+        <td>@Model.Item.Nome</td>
+    </tr>
+    <tr>
+        <th>Tipo de Exercício</th>
+        <td>@Model.Item.Tipo</td>
+    </tr>
+    <tr>
+        <th>Descrição</th>
+        <td>@Model.Item.Descricao</td>
+    </tr>
+</table>
+
+
+
+@*<div>
+    <h4><b>Nome:</b> @Model.Item.Nome</h4>
+    <h4><b>Tipo:</b> @Model.Item.Tipo</h4>
+    <h4><b>Descrição:</b> @Model.Item.Descricao</h4>
+</div>*@
+

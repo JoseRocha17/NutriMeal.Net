@@ -1,0 +1,76 @@
+﻿@model Nutrimeal.ViewModels.DetailsAlimentoViewModel
+@{
+    ViewData["Title"] = Model.PageName;
+}
+
+<div>
+    <h1>Detalhes</h1>
+</div>
+
+<table class="table table-hover">
+
+    <tr>
+        <th>Nome</th>
+        <td>@Model.Item.Nome</td>
+    </tr>
+    <tr>
+        <th>Calorias</th>
+        <td>@Model.Item.Calorias</td>
+    </tr>
+    <tr>
+        <th>Gordura</th>
+        <td>@Model.Item.Gordura</td>
+    </tr>
+    <tr>
+        <th>Colestrol</th>
+        <td>@Model.Item.Colestrol</td>
+    </tr>
+    <tr>
+        <th>Sodio</th>
+        <td>@Model.Item.Sodio</td>
+    </tr>
+    <tr>
+        <th>Potassio</th>
+        <td>@Model.Item.Potassio</td>
+    </tr>
+    <tr>
+        <th>Carboidratos</th>
+        <td>@Model.Item.Carboidrato</td>
+    </tr>
+    <tr>
+        <th>Fibra</th>
+        <td>@Model.Item.Fibra</td>
+    </tr>
+    <tr>
+        <th>Açucar</th>
+        <td>@Model.Item.Acucar</td>
+    </tr>
+    <tr>
+        <th>Proteina</th>
+        <td>@Model.Item.Proteina</td>
+    </tr>
+    <tr>
+        <th>Grupo</th>
+        <td>@Model.Item.Grupo</td>
+    </tr>
+
+
+
+
+</table>
+
+
+    @*<div>
+        <h4><b>Nome:</b> @Model.Item.Nome</h4>
+        <h4><b>Calorias:</b> @Model.Item.Calorias</h4>
+        <h4><b>Gordura:</b> @Model.Item.Gordura</h4>
+        <h4><b>Colestrol:</b> @Model.Item.Colestrol</h4>
+        <h4><b>Sódio:</b> @Model.Item.Sodio</h4>
+        <h4><b>Potassio:</b> @Model.Item.Potassio</h4>
+        <h4><b>Carboidratos:</b> @Model.Item.Carboidrato</h4>
+        <h4><b>Fibra:</b> @Model.Item.Fibra</h4>
+        <h4><b>Açucar:</b> @Model.Item.Acucar</h4>
+        <h4><b>Proteina:</b> @Model.Item.Proteina</h4>
+        <h4><b>Grupo:</b> @Model.Item.Grupo</h4>
+    </div>*@
+

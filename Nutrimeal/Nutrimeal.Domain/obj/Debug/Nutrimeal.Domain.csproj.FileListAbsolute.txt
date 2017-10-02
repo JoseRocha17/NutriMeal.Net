@@ -1,0 +1,10 @@
+c:\users\e5731\documents\visual studio 2015\Projects\Nutrimeal\Nutrimeal.Domain\bin\Debug\Nutrimeal.Domain.exe.config
+c:\users\e5731\documents\visual studio 2015\Projects\Nutrimeal\Nutrimeal.Domain\bin\Debug\Nutrimeal.Domain.exe
+c:\users\e5731\documents\visual studio 2015\Projects\Nutrimeal\Nutrimeal.Domain\bin\Debug\Nutrimeal.Domain.pdb
+c:\users\e5731\documents\visual studio 2015\Projects\Nutrimeal\Nutrimeal.Domain\bin\Debug\AutoMapper.dll
+c:\users\e5731\documents\visual studio 2015\Projects\Nutrimeal\Nutrimeal.Domain\bin\Debug\Nutrimeal.Models.exe
+c:\users\e5731\documents\visual studio 2015\Projects\Nutrimeal\Nutrimeal.Domain\bin\Debug\Nutrimeal.Models.pdb
+c:\users\e5731\documents\visual studio 2015\Projects\Nutrimeal\Nutrimeal.Domain\bin\Debug\AutoMapper.xml
+c:\users\e5731\documents\visual studio 2015\Projects\Nutrimeal\Nutrimeal.Domain\obj\Debug\Nutrimeal.Domain.csprojResolveAssemblyReference.cache
+c:\users\e5731\documents\visual studio 2015\Projects\Nutrimeal\Nutrimeal.Domain\obj\Debug\Nutrimeal.Domain.exe
+c:\users\e5731\documents\visual studio 2015\Projects\Nutrimeal\Nutrimeal.Domain\obj\Debug\Nutrimeal.Domain.pdb
