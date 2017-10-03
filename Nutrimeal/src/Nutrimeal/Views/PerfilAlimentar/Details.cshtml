@@ -23,7 +23,136 @@
 </table>
 
 
+<h2>Refeições</h2>
 
+<table id='Candidate_table' class='table table-bordered table-hover'>
+@if (@Model.Items.Count != 0)
+{
+    <thead>
+        <tr>
+            <th>Perfil</th>
+            <th>Opçôes</th>
+            @*<th>Data do Perfil</th>*@
+        </tr>
+    </thead>
+
+
+
+  
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                @*<td>@Model.PerfilAlimentarNome</td>*@
+                @*<td>@Model.PerfilAlimentarData.ToString("dd/MM/yyyy")</td>*@
+                <td> @item.Nome </td>
+                @*<td> @item.PerfilAlimentarId </td>*@
+                <td>
+
+                    <a asp-controller="Refeicao"
+                       asp-action="Details"
+                       asp-route-id="@item.RefeicaoId"
+                       class="badge badge-default badge-pill pull-right">
+                        Detalhes
+                    </a>
+
+                    <a asp-controller="Refeicao"
+                       asp-action="Edit"
+                       asp-route-id="@item.RefeicaoId"
+                       class="badge badge-default badge-pill pull-right">
+                        Editar
+                    </a>
+
+                    <a asp-controller="Refeicao"
+                       asp-action="Delete"
+                       asp-route-id="@item.RefeicaoId"
+                       class="badge badge-default badge-pill pull-right">
+                        Delete
+                    </a>
+
+                    <a asp-action="New"
+                       asp-controller="QuantidadeAlimentar"
+                       asp-route-id="@item.RefeicaoId"
+                       class="badge badge-default badge-pill">
+                        Adicionar Alimento
+                    </a>
+
+                    @Html.ActionLink("Ver Alimentos", "Details", new { RefeicaoId = item.RefeicaoId, RefeicaoNome = item.Nome })
+
+                </td>
+
+            </tr>
+        }
+
+    }
+    else 
+    {
+        <tr> Este Planao Alimentar não contém Refeições </tr>
+    }
+</table>
+<br />
+
+<a asp-action="New"
+   asp-controller="Refeicao"
+   asp-route-id="@Model.Item.PerfilAlimentarId"
+   class="badge badge-default badge-pill pull-left">
+    Adicionar Refeição ao Plano
+</a>
+<hr />
+<br />
+@if (@Model.QuantidadesAlimentares.Count() > 0)
+{
+    <h2>Alimentos da refeição @Model.RefeicaoNome</h2>
+
+<table id='Candidate_table' class='table table-bordered table-hover'>
+    <thead>
+        <tr>
+            <th>Alimento</th>
+            <th>Quantidade</th>
+            <th>Opções</th>
+        </tr>
+    </thead>
+
+
+
+
+        @foreach (var item in Model.QuantidadesAlimentares)
+        {
+            <tr>
+                <td> @item.AlimentoNome </td>
+                <td> @item.Quantidade @item.TipoMedida</td>
+                <td>
+
+                    <a asp-controller="QuantidadeAlimentar"
+                       asp-action="Details"
+                       asp-route-id="@item.QuantidadeAlimentarId"
+                       class="badge badge-default badge-pill pull-right">
+                        Detalhes
+                    </a>
+
+                    <a asp-controller="QuantidadeAlimentar"
+                       asp-action="Edit"
+                       asp-route-id="@item.QuantidadeAlimentarId"
+                       class="badge badge-default badge-pill pull-right">
+                        Editar
+                    </a>
+
+                    <a asp-controller="QuantidadeAlimentar"
+                       asp-action="Delete"
+                       asp-route-id="@item.QuantidadeAlimentarId"
+                       class="badge badge-default badge-pill pull-right">
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+        }
+
+ 
+
+    
+</table>
+}
 
 
 @*<div>
@@ -31,17 +160,12 @@
     <h4><b>Data do Objetivo:</b> </h4>
 </div>*@
 <hr />
-<a asp-action="New"
-   asp-controller="Refeicao"
-   asp-route-id="@Model.Item.PerfilAlimentarId"
-   class="btn btn-primary">
-    Adicionar Refeição ao Plano
-</a>
 
-<a asp-action="Index"
+
+@*<a asp-action="Index"
    asp-controller="Refeicao"
    asp-route-id="@Model.Item.PerfilAlimentarId"
    class="btn btn-primary">
     Ver Refeições
-</a>
+</a>*@
 

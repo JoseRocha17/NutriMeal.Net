@@ -48,7 +48,7 @@ namespace Nutrimeal.Controllers
             {
                 var perfisFisicos = _perfilFisicoManager.GetAll().Where(x=>x.UserId==id).OrderBy(x=> x.Data);
 
-                
+                clvm.UserEmail = id;
 
                 foreach (var item in perfisFisicos)
                 {
@@ -165,11 +165,14 @@ namespace Nutrimeal.Controllers
         public ActionResult DeleteConfirmed(Guid id)
         {
             var perfilFisico = _perfilFisicoManager.Get(id);
+            var metaExercicios = _metaExercicioManager.GetAll();
+            var exercicioAtributos = _exercicioAtributoManager.GetAll();
 
             if (perfilFisico == null)
                 return null;
 
             _perfilFisicoManager.Delete(perfilFisico);
+            _metaExercicioManager.DeletePerfilFisicoWithMetaExercicio(id, metaExercicios, exercicioAtributos);
 
             return RedirectToAction("Index", "PerfilFisico");
         }

@@ -12,10 +12,12 @@ namespace Nutrimeal.Business
     public class MetaExercicioManager : IMetaExercicioManager
     {
         private readonly IMetaExercicioRepository _metaExercicioRepository;
+        private readonly IExercicioAtributoRepository _exercicioAtributoRepository;
 
-        public MetaExercicioManager(IMetaExercicioRepository metaExercicioRepository)
+        public MetaExercicioManager(IMetaExercicioRepository metaExercicioRepository, IExercicioAtributoRepository exercicioAtributoRepository)
         {
             _metaExercicioRepository = metaExercicioRepository;
+            _exercicioAtributoRepository = exercicioAtributoRepository;
         }
 
         public Guid Create(MetaExercicio metaExercicio)
@@ -36,7 +38,26 @@ namespace Nutrimeal.Business
             return metaExercicio.MetaExercicioId;
         }
 
-
+        public void DeletePerfilFisicoWithMetaExercicio(Guid PerfilFisicoId, List<MetaExercicio> metaExercicios, List<ExercicioAtributo> exercicioAtributos)
+        {
+         if(PerfilFisicoId != null)
+            {
+                foreach(var item in metaExercicios)
+                {
+                    if(item.PerfilFisicoId == PerfilFisicoId)
+                    {
+                        foreach(var itemE in exercicioAtributos)
+                        {
+                            if(itemE.MetaExercicioId !=null && itemE.MetaExercicioId == item.MetaExercicioId)
+                            {
+                                _exercicioAtributoRepository.Delete(Code.EfAutoMapperConfig.Mapped.Map<Domain.Entities.ExercicioAtributo>(itemE));
+                            }
+                        }
+                        _metaExercicioRepository.Delete(Code.EfAutoMapperConfig.Mapped.Map<Domain.Entities.MetaExercicio>(item));
+                    }
+                }
+            }   
+        }
 
         public void Edit(MetaExercicio metaExercicio)
         {

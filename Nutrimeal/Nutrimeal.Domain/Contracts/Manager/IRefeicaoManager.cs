@@ -16,5 +16,6 @@ namespace Nutrimeal.Domain.Contracts.Manager
         Models.Refeicao Get(Guid id);
         //List<Objetivos> GetAll(Guid id);
         List<Models.Refeicao> GetAll();
+        void DeletePerfilAlimentarWithRefeicao(Guid PerfilAlimentarId, List<Models.Refeicao> refeicoes, List<Models.QuantidadeAlimentar> quantidadesAlimementares);
     }
 }

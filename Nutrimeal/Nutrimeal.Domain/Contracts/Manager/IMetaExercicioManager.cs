@@ -16,6 +16,7 @@ namespace Nutrimeal.Domain.Contracts.Manager
         Models.MetaExercicio Get(Guid id);
         //List<Objetivos> GetAll(Guid id);
         List<MetaExercicio> GetAll();
+        void DeletePerfilFisicoWithMetaExercicio(Guid PerfilFisicoId, List<Models.MetaExercicio> metaExercicios, List<Models.ExercicioAtributo> exercicioAtributos);
 
     }
 }

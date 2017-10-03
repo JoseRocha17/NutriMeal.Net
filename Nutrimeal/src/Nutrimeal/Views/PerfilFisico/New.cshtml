@@ -7,22 +7,29 @@
 
 <div class="form-group">
     <form asp-action="New" asp-controller="PerfilFisico">
-        <div>
-            <label asp-for="@Model.PerfilFisicoInput.Nome"></label>
-            <div>
+        <div >
+            <label class="control-label col-md-2" asp-for="@Model.PerfilFisicoInput.Nome"></label>
+        
+            <div class="col-md-10">
                 <input asp-for="@Model.PerfilFisicoInput.Nome" />
                 <span asp-validation-for="@Model.PerfilFisicoInput.Nome" class="text-danger"></span>
             </div>
-        </div>
+         </div>
+        
         <div>
-            <label asp-for="@Model.PerfilFisicoInput.Data"></label>
-            <div>
+            <label class="control-label col-md-2"  asp-for="@Model.PerfilFisicoInput.Data"></label>
+            <div class="col-md-10">
                 <input asp-for="@Model.PerfilFisicoInput.Data" type="date" />
                 <span asp-validation-for="@Model.PerfilFisicoInput.Data" class="text-danger"></span>
             </div>
         </div>
         <hr />
-        <button type="submit" class="btn btn-info">Criar</button>
-
-    </form>
+        <br />
+        <div>
+            <label class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <button type="submit" class="btn btn-info">Criar</button>
+                </div>
+            </div>
+        </form>
 </div>

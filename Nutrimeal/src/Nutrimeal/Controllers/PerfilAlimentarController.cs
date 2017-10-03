@@ -9,6 +9,8 @@ using Nutrimeal.Models.PerfilAlimentar;
 using Nutrimeal.Web.Infrastructure;
 using Nutrimeal.Models;
 using Microsoft.AspNetCore.Identity;
+using Nutrimeal.Models.Refeicao;
+using Nutrimeal.Models.QuantidadeAlimentar;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,11 +21,17 @@ namespace Nutrimeal.Controllers
 
         private readonly IPerfilAlimentarManager _perfilAlimentarManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IRefeicaoManager _refeicaoManager;
+        private readonly IQuantidadeAlimentarManager _quantidadeAlimentarManager;
+        private readonly IAlimentoManager _alimentoManager;
 
-        public PerfilAlimentarController(IPerfilAlimentarManager perfilAlimentarManager, UserManager<ApplicationUser> userManager)
+        public PerfilAlimentarController(IPerfilAlimentarManager perfilAlimentarManager, UserManager<ApplicationUser> userManager, IRefeicaoManager refeicaoManager, IQuantidadeAlimentarManager quantiadadeAlimentarManager, IAlimentoManager alimentoManager)
         {
             _perfilAlimentarManager = perfilAlimentarManager;
             _userManager = userManager;
+            _refeicaoManager = refeicaoManager;
+            _quantidadeAlimentarManager = quantiadadeAlimentarManager;
+            _alimentoManager = alimentoManager;
         }
        //Utilizador
 
@@ -158,17 +166,26 @@ namespace Nutrimeal.Controllers
         public ActionResult DeleteConfirmed(Guid id)
         {
             var perfilAlimentar = _perfilAlimentarManager.Get(id);
+            var refeicoes = _refeicaoManager.GetAll();
+            var quantidadesAlimentares = _quantidadeAlimentarManager.GetAll();
+
 
             if (perfilAlimentar == null)
                 return null;
 
             _perfilAlimentarManager.Delete(perfilAlimentar);
+            _refeicaoManager.DeletePerfilAlimentarWithRefeicao(id, refeicoes, quantidadesAlimentares);
+
+            //foreach (var item in refeicoes)
+            //{
+            //    _quantidadeAlimentarManager.DeleteRefeicaoWithAlimentos(item.RefeicaoId, quantidadesAlimentares);
+            //}
 
             return RedirectToAction("Index", "PerfilAlimentar");
         }
 
         [HttpGet]
-        public IActionResult Details(Guid id)
+        public IActionResult Details(Guid id, Guid? RefeicaoId, string RefeicaoNome)
         {
             var perfilAlimentar = _perfilAlimentarManager.Get(id);
             if (perfilAlimentar == null)
@@ -177,6 +194,67 @@ namespace Nutrimeal.Controllers
             {
                 PageName = "Detalhes do Perfil Alimentar",
             };
+
+            if (RefeicaoId != null)
+            {
+                ViewBag.RefeicaoId = RefeicaoId.Value;  
+                ViewModel.RefeicaoNome = ViewBag.RefeicaoNome = RefeicaoNome;
+
+                var quantidadeAlimentares = _quantidadeAlimentarManager.GetAll().Where(x => x.RefeicaoId == RefeicaoId);
+                foreach(var item in quantidadeAlimentares)
+                {
+                    var alimento = _alimentoManager.Get(item.AlimentoId);
+                    ViewModel.QuantidadesAlimentares.Add(new QuantidadeAlimentarInList
+                    {
+                        QuantidadeAlimentarId = item.QuantidadeAlimentarId,
+                        Quantidade = item.Quantidade,
+                        TipoMedida = item.TipoMedida,
+                        RefeicaoId = item.RefeicaoId,
+                        AlimentoId = item.AlimentoId,
+                        AlimentoNome = alimento.Nome
+                    });
+                }
+            }
+
+
+            try
+            {
+
+                var perfil = _perfilAlimentarManager.Get(id);
+                //ViewModel.PerfilAlimentarNome = perfil.Nome;
+                //ViewModel.PerfilAlimentarData = perfil.Data;
+                // var refeicoes = _refeicaoManager.GetAll().Where(s => s.PerfilAlimentarId == id);
+
+                //var q = from c in _refeicaoManager.GetAll() where c.PerfilAlimentarId == id select c;
+                //var refeicoes = _refeicaoManager.GetAll().Where(s => s.PerfilAlimentarId == id).ToList();
+
+
+
+                var refeicoes = _refeicaoManager.GetAll().Where(s => s.PerfilAlimentarId == id);
+
+                // var refe = refeicoes.Where(s => s.PerfilAlimentarId == perfil.PerfilAlimentarId);
+
+
+
+                foreach (var item in refeicoes)
+                {
+
+                    ViewModel.Items.Add(new RefeicaoInList
+                    {
+                        RefeicaoId = item.RefeicaoId,
+                        PerfilAlimentarId = item.PerfilAlimentarId,
+                        Nome = item.Nome
+                    });
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ViewModel.ErrorMessage = ex.Message;
+                // TODO: Log error
+            }
+
+
 
             ViewModel.Item = ServicesAutoMapperConfig.Mapped.Map<PerfilAlimentarInList>(perfilAlimentar);
 
@@ -286,11 +364,29 @@ namespace Nutrimeal.Controllers
         public ActionResult DeleteConfirmedAdmin(Guid id)
         {
             var perfilAlimentar = _perfilAlimentarManager.Get(id);
+            var refeicoes = _refeicaoManager.GetAll().Where(x=>x.PerfilAlimentarId ==id).ToList();
+
+
+            var quantidadesAlimentares = _quantidadeAlimentarManager.GetAll();
+
+
+
+            
 
             if (perfilAlimentar == null)
                 return null;
 
             _perfilAlimentarManager.Delete(perfilAlimentar);
+
+                _refeicaoManager.DeletePerfilAlimentarWithRefeicao(id, refeicoes, quantidadesAlimentares);
+
+
+            
+
+            //foreach (var item in refeicoes)
+            //{
+            //    _quantidadeAlimentarManager.DeleteRefeicaoWithAlimentos(item.RefeicaoId, quantidadesAlimentares);
+            //}
 
             return RedirectToAction("AdminList", "PerfilAlimentar");
         }

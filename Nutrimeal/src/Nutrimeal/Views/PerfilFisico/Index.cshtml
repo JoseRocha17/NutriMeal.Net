@@ -64,7 +64,12 @@
 
 
 <div id="New_Candidate">
-    <a asp-area="" asp-action="New" class="btn btn-success">Novo</a>
+    <a asp-action="New"
+       asp-controller="PerfilFisico"
+       asp-route-id="@Model.UserEmail"
+       class="btn btn-primary">
+        Criar Perfil Físico
+    </a>
 </div>
 
 

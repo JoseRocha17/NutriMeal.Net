@@ -14,10 +14,12 @@ namespace Nutrimeal.Business
     {
 
         private readonly IRefeicaoRepository _refeicaoRepository;
+        private readonly IQuantidadeAlimentarRepository _quantidadeAlimentarRepository;
 
-        public RefeicaoManager(IRefeicaoRepository refeicaoRepository)
+        public RefeicaoManager(IRefeicaoRepository refeicaoRepository, IQuantidadeAlimentarRepository quantidadeAlimentarRepository)
         {
             _refeicaoRepository = refeicaoRepository;
+            _quantidadeAlimentarRepository = quantidadeAlimentarRepository;
         }
 
         public Guid Create(Models.Refeicao refeicao)
@@ -36,6 +38,29 @@ namespace Nutrimeal.Business
         {
             if (refeicao != null) _refeicaoRepository.Delete(Code.EfAutoMapperConfig.Mapped.Map<Domain.Entities.Refeicao>(refeicao));
             return refeicao.RefeicaoId;
+        }
+
+        public void DeletePerfilAlimentarWithRefeicao(Guid PerfilAlimentarId, List<Models.Refeicao> refeicoes, List<Models.QuantidadeAlimentar> quantidadesAlimementares)
+        {
+            if(PerfilAlimentarId != null)
+            {
+                foreach(var item in refeicoes)
+                {
+                    if(item.PerfilAlimentarId == PerfilAlimentarId)
+                    {
+                        foreach(var itemQ in quantidadesAlimementares)
+                        {
+                            if (itemQ.RefeicaoId != null && itemQ.RefeicaoId == item.RefeicaoId)
+                            {
+                                //_refeicaoRepository.Delete(Code.EfAutoMapperConfig.Mapped.Map<Domain.Entities.Refeicao>(item));
+                                _quantidadeAlimentarRepository.Delete(Code.EfAutoMapperConfig.Mapped.Map<Domain.Entities.QuantidadeAlimentar>(itemQ));
+                            }
+                        }
+                        _refeicaoRepository.Delete(Code.EfAutoMapperConfig.Mapped.Map<Domain.Entities.Refeicao>(item));
+
+                    }
+                }
+            }
         }
 
         public void Edit(Models.Refeicao refeicao)

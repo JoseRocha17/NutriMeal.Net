@@ -17,11 +17,13 @@ namespace Nutrimeal.Controllers
     {
         private readonly IRefeicaoManager _refeicaoManager;
         private readonly IPerfilAlimentarManager _perfilAlimentarManager;
+        private readonly IQuantidadeAlimentarManager _quantidadeAlimentarManager;
 
-        public RefeicaoController(IRefeicaoManager refeicaoManager, IPerfilAlimentarManager perfilAlimentarManager)
+        public RefeicaoController(IRefeicaoManager refeicaoManager, IPerfilAlimentarManager perfilAlimentarManager, IQuantidadeAlimentarManager quantidadeAlimentarManager)
         {
             _refeicaoManager = refeicaoManager;
             _perfilAlimentarManager = perfilAlimentarManager;
+            _quantidadeAlimentarManager = quantidadeAlimentarManager;
         }
 
         // GET: /<controller>/
@@ -88,7 +90,7 @@ namespace Nutrimeal.Controllers
                     input.RefeicaoId = idr;
                     input.PerfilAlimentarId = id;
                     _refeicaoManager.Create(ServicesAutoMapperConfig.Mapped.Map<Refeicao>(input));
-                    return RedirectToAction("Index/" + id, "Refeicao");
+                    return RedirectToAction("Details/" + input.PerfilAlimentarId, "PerfilAlimentar");
                 }
                 catch (Exception)
                 {
@@ -160,11 +162,13 @@ namespace Nutrimeal.Controllers
         public ActionResult DeleteConfirmed(Guid id)
         {
             var refeicao = _refeicaoManager.Get(id);
+            var quantidadesAlimentares = _quantidadeAlimentarManager.GetAll();
 
             if (refeicao == null)
                 return null;
 
             _refeicaoManager.Delete(refeicao);
+            _quantidadeAlimentarManager.DeleteRefeicaoWithAlimentos(id, quantidadesAlimentares);
 
             return RedirectToAction("Index", "Refeicao");
         }

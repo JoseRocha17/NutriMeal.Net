@@ -37,6 +37,20 @@ namespace Nutrimeal.Business
             return quantidadeAlimentar.QuantidadeAlimentarId;
         }
 
+        public void DeleteRefeicaoWithAlimentos(Guid refeicaoId, List<QuantidadeAlimentar> quantidadesAlimentares)
+        {
+            if (refeicaoId != null)
+            {
+                foreach (var item in quantidadesAlimentares)
+                {
+                    if(item.RefeicaoId == refeicaoId)
+                    {
+                        _quantidadeAlimentarRepository.Delete(Code.EfAutoMapperConfig.Mapped.Map<Domain.Entities.QuantidadeAlimentar>(item));
+                    }
+                }
+            }
+        }
+
         public void Edit(QuantidadeAlimentar quantidadeAlimentar)
         {
             if (Get(quantidadeAlimentar.QuantidadeAlimentarId) != null)

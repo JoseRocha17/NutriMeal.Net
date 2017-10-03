@@ -20,12 +20,14 @@ namespace Nutrimeal.Controllers
         private readonly IQuantidadeAlimentarManager _quantidadeAlimentarManager;
         private readonly IRefeicaoManager _refeicaoManager;
         private readonly IAlimentoManager _alimentoManager;
+        private readonly IPerfilAlimentarManager _perfilAlimentarManager;
 
-        public QuantidadeAlimentarController(IQuantidadeAlimentarManager quantidadeAlimentarManager, IRefeicaoManager refeicaoManager, IAlimentoManager alimentoManager)
+        public QuantidadeAlimentarController(IQuantidadeAlimentarManager quantidadeAlimentarManager, IRefeicaoManager refeicaoManager, IAlimentoManager alimentoManager, IPerfilAlimentarManager perfilAlimentarManager)
         {
             _quantidadeAlimentarManager = quantidadeAlimentarManager;
             _refeicaoManager = refeicaoManager;
             _alimentoManager = alimentoManager;
+            _perfilAlimentarManager = perfilAlimentarManager;
         }
 
 
@@ -127,7 +129,10 @@ namespace Nutrimeal.Controllers
                     input.QuantidadeAlimentarId = idQ;
                     input.RefeicaoId = id;
                     _quantidadeAlimentarManager.Create(ServicesAutoMapperConfig.Mapped.Map<QuantidadeAlimentar>(input));
-                    return RedirectToAction("Index/" + id, "QuantidadeAlimentar");
+
+                    var refeicao = _refeicaoManager.Get(id);
+                    var perfilAlimentar = _perfilAlimentarManager.Get(refeicao.PerfilAlimentarId);
+                    return RedirectToAction("Details/" + perfilAlimentar.PerfilAlimentarId, "PerfilAlimentar");
                 }
                 catch (Exception)
                 {

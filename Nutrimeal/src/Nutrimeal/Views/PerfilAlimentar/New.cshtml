@@ -8,21 +8,26 @@
 <div class="form-group">
     <form asp-action="New" asp-controller="PerfilAlimentar">
         <div>
-            <label asp-for="@Model.PerfilAlimentarInput.Nome"></label>
-            <div>
+            <label class="control-label col-md-2" asp-for="@Model.PerfilAlimentarInput.Nome"></label>
+            <div class="col-md-10">
                 <input asp-for="@Model.PerfilAlimentarInput.Nome" />
                 <span asp-validation-for="@Model.PerfilAlimentarInput.Nome" class="text-danger"></span>
             </div>
         </div>
         <div>
-            <label asp-for="@Model.PerfilAlimentarInput.Data"></label>
-            <div>
+            <label class="control-label col-md-2" asp-for="@Model.PerfilAlimentarInput.Data"></label>
+            <div class="col-md-10">
                 <input asp-for="@Model.PerfilAlimentarInput.Data" type="date" />
                 <span asp-validation-for="@Model.PerfilAlimentarInput.Data" class="text-danger"></span>
             </div>
         </div>
         <hr />
-        <button type="submit" class="btn btn-info">Criar</button>
-
+        <br />
+        <div>
+            <label class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <button type="submit" class="btn btn-info">Criar</button>
+                </div>
+            </div>
     </form>
 </div>
