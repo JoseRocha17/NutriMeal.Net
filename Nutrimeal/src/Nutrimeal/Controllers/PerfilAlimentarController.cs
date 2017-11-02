@@ -45,12 +45,14 @@ namespace Nutrimeal.Controllers
                 var perfisAlimentares = _perfilAlimentarManager.GetAll().Where(x=>x.UserId==id).OrderBy(x=>x.Data);
 
 
-               // var user = await GetUserById(id);
+                //var user = await GetUserById(id);
 
                 //clvm.UserEmail = user.Email;
+                //var userId = _userManager.GetUserId(User);
+                //clvm.UserId = _userManager.GetUserId(User);
                 foreach (var item in perfisAlimentares)
                 {
-
+                    clvm.UserEmail = id;
                     var user = await GetUserById(item.UserId);
                     clvm.Items.Add(new PerfilAlimentarInList
                     {
@@ -263,13 +265,50 @@ namespace Nutrimeal.Controllers
 
         private async Task<ApplicationUser> GetUserById(string id) => await _userManager.FindByIdAsync(id);
 
-
+        
 
 
         //Admnistrador
 
 
-        public async Task<IActionResult> AdminList()
+        public async Task<IActionResult> AdminList(string id)
+        {
+            var clvm = new PerfilAlimentarListViewModel { PageName = "Listagem de Perfis Alimentares " };
+            try
+            {
+                var perfisAlimentares = _perfilAlimentarManager.GetAll().Where(x=> x.UserId==id).OrderBy(x => x.Data);
+
+
+                //var user = await GetUserById(id);
+
+                //clvm.UserEmail = user.Email;
+                foreach (var item in perfisAlimentares)
+                {
+                    var user = await GetUserById(item.UserId);
+
+                    clvm.Items.Add(new PerfilAlimentarInList
+                    {
+
+                        PerfilAlimentarId = item.PerfilAlimentarId,
+                        Nome = item.Nome,
+                        Data = item.Data,
+                        UserEmail = user.Email
+                        //UserEmail = user.Email
+
+
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                clvm.ErrorMessage = ex.Message;
+                // TODO: Log error
+            }
+
+            return View(clvm);
+        }
+
+        public async Task<IActionResult> ListAllPerfisAlimentares()
         {
             var clvm = new PerfilAlimentarListViewModel { PageName = "Listagem de Perfis Alimentares " };
             try
@@ -320,6 +359,7 @@ namespace Nutrimeal.Controllers
 
             if (ModelState.IsValid)
             {
+
                 try
                 {
 
@@ -328,7 +368,7 @@ namespace Nutrimeal.Controllers
                     input.UserId = id;
                     _perfilAlimentarManager.Create(ServicesAutoMapperConfig.Mapped.Map<PerfilAlimentar>(input));
 
-                    return RedirectToAction("AdminList", "PerfilAlimentar");
+                    return RedirectToAction("AdminList/" +id, "PerfilAlimentar");
                 }
                 catch (Exception)
                 {
@@ -338,9 +378,8 @@ namespace Nutrimeal.Controllers
             }
             else
             {
-                return View(new NewPerfilAlimentarViewModel { PerfilAlimentarInput = input });
+                return View(new NewPerfilAlimentarViewModel { PerfilAlimentarInput = input, UserId=id });
             }
-
         }
 
         public ActionResult DeletePerfilAlimentarAdmin(Guid id)
@@ -370,18 +409,12 @@ namespace Nutrimeal.Controllers
             var quantidadesAlimentares = _quantidadeAlimentarManager.GetAll();
 
 
-
-            
-
             if (perfilAlimentar == null)
                 return null;
 
             _perfilAlimentarManager.Delete(perfilAlimentar);
 
                 _refeicaoManager.DeletePerfilAlimentarWithRefeicao(id, refeicoes, quantidadesAlimentares);
-
-
-            
 
             //foreach (var item in refeicoes)
             //{
@@ -390,9 +423,6 @@ namespace Nutrimeal.Controllers
 
             return RedirectToAction("AdminList", "PerfilAlimentar");
         }
-
-
-
 
 
     }

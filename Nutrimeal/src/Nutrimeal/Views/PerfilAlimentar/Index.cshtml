@@ -63,7 +63,12 @@
 </table>
 
 <div id="New_Candidate">
-    <a asp-area="" asp-action="New" class="btn btn-success">Novo</a>
+    <a asp-action="New"
+       asp-controller="PerfilAlimentar"
+       asp-route-id="@Model.UserEmail"
+       class="btn btn-success">
+        Novo
+    </a>
 </div>
 
 

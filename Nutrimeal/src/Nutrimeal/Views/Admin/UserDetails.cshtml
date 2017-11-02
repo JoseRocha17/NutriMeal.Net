@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿@using Microsoft.AspNetCore.Identity;
 @model Nutrimeal.ViewModels.AdminListViewModel
 @inject UserManager<ApplicationUser> userManager
 
@@ -26,7 +26,8 @@
 
             <tr>
                 <td>
-                    <a asp-controller="UserManagement" asp-action="AddRole" asp-route-id="@user.Id" class="btn btn-primary">Add Role</a>
+                    <a asp-controller="Admin" asp-action="AddRole" asp-route-id="@user.Id" class="btn btn-primary">Add Role</a>
+                    <a asp-controller="Admin" asp-action="AddPhoneNumber" asp-route-id="@user.Id" class="btn btn-primary">Add PhoneNumber</a>
                     <a asp-controller="PerfilAlimentar" asp-action="NewPerfilAlimentarAdmin" asp-route-id="@user.Id" class="btn btn-primary">Criar Perfil Alimentar</a>
                     <a asp-controller="PerfilFisico" asp-action="NewPerfilFisicoAdmin" asp-route-id="@user.Id"class="btn btn-primary">Criar Perfil Físico</a>
                 </td>

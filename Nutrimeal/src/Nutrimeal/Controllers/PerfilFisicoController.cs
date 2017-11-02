@@ -273,7 +273,44 @@ namespace Nutrimeal.Controllers
 
             try
             {
-                var perfisFisicos = _perfilFisicoManager.GetAll().OrderBy(x=>x.Data);
+                var perfisFisicos = _perfilFisicoManager.GetAll().Where(x=>x.UserId==id).OrderBy(x=>x.Data);
+
+
+
+                foreach (var item in perfisFisicos)
+                {
+
+                    var user = await GetUserById(item.UserId);
+
+                    clvm.Items.Add(new PerfilFisicoInList
+                    {
+                        PerfilFisicoId = item.PerfilFisicoId,
+                        Nome = item.Nome,
+                        Data = item.Data,
+                        UserEmail = user.Email
+
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                clvm.ErrorMessage = ex.Message;
+                // TODO: Log error
+            }
+
+            return View(clvm);
+        }
+
+        public async Task<IActionResult> ListAllPerfisFisicos()
+        {
+            var clvm = new PerfilFisicoListViewModel { PageName = "Listagem de Perfis Físicos " };
+            //var user = await GetUserById(id);
+            //clvm.UserEmail = user.Email;
+
+
+            try
+            {
+                var perfisFisicos = _perfilFisicoManager.GetAll().OrderBy(x => x.Data);
 
 
 
@@ -303,6 +340,7 @@ namespace Nutrimeal.Controllers
 
 
 
+
         [HttpGet]
         public IActionResult NewPerfilFisicoAdmin(string id)
         {
@@ -322,7 +360,7 @@ namespace Nutrimeal.Controllers
                     input.PerfilFisicoId = idp;
                     input.UserId = id;
                     _perfilFisicoManager.Create(ServicesAutoMapperConfig.Mapped.Map<PerfilFisico>(input));
-                    return RedirectToAction("AdminList", "PerfilFisico");
+                    return RedirectToAction("AdminList/"+id, "PerfilFisico");
                 }
                 catch (Exception)
                 {
