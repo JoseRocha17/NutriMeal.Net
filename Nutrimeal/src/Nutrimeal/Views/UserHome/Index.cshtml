@@ -1,54 +1,141 @@
 ﻿@model Nutrimeal.ViewModels.UserHomeViewModel
+<link href="~/css/userHomepage.css" rel="stylesheet" />
+<script src="~/js/App.js"></script>
+<script src="~/js/imc.js"></script>
 
+<style>
+    .noSelected{
+    opacity: 0.6;
+    background-color: white !important;
+    color: black !important;
+}
+</style>
+
+<hr />
 <h1 align="center">Painel Utilizador</h1>
+<div style="position:relative; margin-top: 4%;">
 
-<hr />
-<a asp-action="New"
-   asp-controller="PerfilAlimentar"
-   asp-route-id="@Model.UserId"
-   class="btn btn-primary">
-    Criar Perfil Alimentar
-</a>
+    <div style="float: left">
+        <a asp-action="New"
+           asp-controller="PerfilAlimentar"
+           asp-route-id="@Model.UserId"
+           class="btn btn-primary">
+            Criar Perfil Alimentar
+        </a>
 
-<a asp-action="Index"
-   asp-controller="PerfilAlimentar"
-   asp-route-id="@Model.UserId"
-   class="btn btn-primary">
-    Ver Perfis Alimentares
-</a>
+        <a asp-action="Index"
+           asp-controller="PerfilAlimentar"
+           asp-route-id="@Model.UserId"
+           class="btn btn-primary">
+            Ver Perfis Alimentares
+        </a>
 
-<hr />
+        <hr />
 
-<a asp-action="New"
-   asp-controller="PerfilFisico"
-   asp-route-id="@Model.UserId"
-   class="btn btn-primary">
-    Criar Perfil Físico
-</a>
+        <a asp-action="New"
+           asp-controller="PerfilFisico"
+           asp-route-id="@Model.UserId"
+           class="btn btn-primary">
+            Criar Perfil Físico
+        </a>
 
-<a asp-action="Index"
-   asp-controller="PerfilFisico"
-   asp-route-id="@Model.UserId"
-   class="btn btn-primary">
-    Ver Perfis Fisicos
-</a>
+        <a asp-action="Index"
+           asp-controller="PerfilFisico"
+           asp-route-id="@Model.UserId"
+           class="btn btn-primary">
+            Ver Perfis Fisicos
+        </a>
 
-<hr />
+        <hr />
 
-<a asp-action="Index"
-   asp-controller="Alimento"
-   class="btn btn-primary">
-    Alimentos
-</a>
+        <a asp-action="Index"
+           asp-controller="Alimento"
+           class="btn btn-primary">
+            Alimentos
+        </a>
 
-<hr />
-<a asp-action="Index"
-   asp-controller="Exercicio"
-   class="btn btn-primary">
-    Exercicios
-</a>
+        <hr />
+        <a asp-action="Index"
+           asp-controller="Exercicio"
+           class="btn btn-primary">
+            Exercicios
+        </a>
+
+    </div>
+    @*<button onclick="yearsUntilRetirement('Jose', 1994)"> Teste JavaScript</button>*@
+    <div style="float:right;">
+        <button id="buttonShowDivCalcIMC" onclick="showDivImc()">Calcular IMC</button>
+        <div style="display:none" id="divIMC">
+            <label>Peso</label>
+            <input id="pesoIMC" type="number" step="0.01" />
+            <label>Altura (cm)</label>
+            <input id="alturaIMC" type="number" step="0.01" />
+
+            <a onclick="calcularIMC(document.getElementById('pesoIMC').value, document.getElementById('alturaIMC').value)"
+               class="btn btn-primary">
+                Calcular
+            </a>
+        </div>
+        <br />
+        <br />
 
 
+        <div class="row" id="divResultado" style="display: none;">
+            <div class="col-lg-12 col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-12 text-center">
+                                <label id="labelResultadoIMC" style="display: none;">Resultado: </label>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="panel-footer">
+                            <div class="col-xs-12 text-center">
+                            <span id="spanResultadoIMC" class="noResult"></span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            </div>
+                                <div class="clearfix"></div>
+                        </div>
+                </div>
+            </div>
+        </div>
 
-
-
+        <br />
+        <div id="divTabelaResultadosIMC" style="display: none;">
+            <table id="tabelaResultadosIMC" class="table table-hover">
+                <tr>
+                    <th>Resultado</th>
+                    <th>Situação</th>
+                </tr>
+                <tr class="noSelected">
+                    <td> Abaixo 17 </td>
+                    <td>Muito abaixo do peso</td>
+                <tr class="noSelected">
+                    <td>Entre 17 e 18,49</td>
+                    <td>Abaixo do peso</td>
+                </tr>
+                <tr class="noSelected">
+                    <td>Entre 18,5 e 24,99</td>
+                    <td>Peso normal</td>
+                </tr>
+                <tr class="noSelected">
+                    <td>Entre 25 e 29,99</td>
+                    <td>Acima do peso</td>
+                </tr>
+                <tr class="noSelected">
+                    <td>Entre 30 e 34,99</td>
+                    <td>Obesidade I</td>
+                </tr>
+                <tr class="noSelected">
+                    <td>Entre 35 e 39,99</td>
+                    <td>Obesidade II (severa)</td>
+                </tr>
+                <tr class="noSelected">
+                    <td>Acima de 40</td>
+                    <td>Obesidade III (mórbida)</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
