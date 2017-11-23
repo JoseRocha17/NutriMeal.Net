@@ -1,0 +1,14 @@
+
+//Nutrimeal - Future Implementations
+
+-Calcular o total de calorias numa refeicao
+-Calcular o total de calorias num plano alimentar
+-Calcular as calorias num alimento (de forma automatica)
+
+-Calcular o total de calorias gastas num exercicio fisico
+-Calcular o total de calorias gastas num perfil fisico
+
+-Calcular o IMC de forma automatica (dependendo das medições dos utilizadores)
+-Gravar numa tabela o IMC dos utilizadores
+
+-Graficos com a evolução dos utilizadores
