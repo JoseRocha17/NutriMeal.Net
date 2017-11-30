@@ -1,4 +1,4 @@
-
+﻿
 //Nutrimeal - Future Implementations
 
 -Calcular o total de calorias numa refeicao
@@ -11,4 +11,13 @@
 -Calcular o IMC de forma automatica (dependendo das medições dos utilizadores)
 -Gravar numa tabela o IMC dos utilizadores
 
--Graficos com a evolução dos utilizadores
+-Graficos com a evolução dos utilizadores:
+	-Peso
+	-Massa Muscular
+	-Gordura
+	-Calorias Queimadas
+	-Calorias Acumuladas
+	-Tempo de Exercicio
+	-Numero de Refeicoes(por dia/semana/mes)
+	
+	

@@ -1,16 +1,19 @@
-﻿@model Nutrimeal.ViewModels.DetailsPerfilAlimentarViewModel
+﻿
+@model Nutrimeal.ViewModels.DetailsPerfilAlimentarViewModel
 @{
     ViewData["Title"] = Model.PageName;
 }
+
+<script src="~/js/Calculos/calcularCaloriasRefeicao.js"></script>
 
 <div>
     <h1>Detalhes</h1>
 </div>
 
 
-<table class="table table-hover" >
+<table id="tabelaPerfilAlimentar" class="table table-hover" >
     <tr>
-        <th>Peso</th>
+        <th>Nome</th>
         <td>@Model.Item.Nome</td>
     </tr>
     <tr>
@@ -25,12 +28,12 @@
 
 <h2>Refeições</h2>
 
-<table id='Candidate_table' class='table table-bordered table-hover'>
+<table id='refeicaoTable' class='table table-bordered table-hover'>
 @if (@Model.Items.Count != 0)
 {
     <thead>
         <tr>
-            <th>Perfil</th>
+            <th>Refeicao</th>
             <th>Opçôes</th>
             @*<th>Data do Perfil</th>*@
         </tr>
@@ -103,7 +106,7 @@
 {
     <h2>Alimentos da refeição @Model.RefeicaoNome</h2>
 
-<table id='Candidate_table' class='table table-bordered table-hover'>
+<table id='alimentosRefeicaoTableId' class='table table-bordered table-hover'>
     <thead>
         <tr>
             <th>Alimento</th>
@@ -152,6 +155,10 @@
 
     
 </table>
+
+<a onclick="calcularCaloraisRefeicao(document.getElementById('alimentosRefeicaoTableId'))">
+    Adicionar Refeição ao Plano
+</a>
 }
 
 
