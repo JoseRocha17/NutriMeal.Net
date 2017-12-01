@@ -147,6 +147,43 @@ namespace Nutrimeal.Controllers
 
         }
 
+
+        [HttpGet]
+        public IActionResult EditRefeicaoTotalCalorias(Guid id)
+        {
+
+            var refeicao = _refeicaoManager.Get(id);
+            if (refeicao == null)
+                return null;
+            var viewModel = new DetailsPerfilAlimentarViewModel
+            {
+                PageName = "Editar Medição",
+                RefeicaoToUpdate = ServicesAutoMapperConfig.Mapped.Map<RefeicaoInList>(refeicao),
+            };
+
+            return View("Details", viewModel);
+
+        }
+
+        [HttpPost]
+        public IActionResult EditRefeicaoTotalCalorias([Bind(Prefix = "RefeicaoToUpdate")] RefeicaoInList input)
+        {
+            if (ModelState.IsValid)
+            {
+
+                _refeicaoManager.EditCaloriasRefeicao(ServicesAutoMapperConfig.Mapped.Map<Refeicao>(input));
+            }
+            else
+            {
+                return View(new DetailsPerfilAlimentarViewModel
+                {
+                    RefeicaoToUpdate = input
+                });
+            }
+            return RedirectToAction("Index", "Refeicao");
+
+        }
+
         public ActionResult Delete(Guid id)
         {
 
@@ -187,7 +224,7 @@ namespace Nutrimeal.Controllers
         }
 
         [HttpGet]
-        public IActionResult Details(Guid id, Guid? RefeicaoId, string RefeicaoNome)
+        public IActionResult Details(Guid id, Guid? RefeicaoId, string RefeicaoNome, float Calorias)
         {
             var perfilAlimentar = _perfilAlimentarManager.Get(id);
             if (perfilAlimentar == null)
@@ -201,6 +238,7 @@ namespace Nutrimeal.Controllers
             {
                 ViewBag.RefeicaoId = RefeicaoId.Value;  
                 ViewModel.RefeicaoNome = ViewBag.RefeicaoNome = RefeicaoNome;
+                ViewModel.CaloriasRefeicao = ViewBag.Calorias = Calorias;
 
                 var quantidadeAlimentares = _quantidadeAlimentarManager.GetAll().Where(x => x.RefeicaoId == RefeicaoId);
                 foreach(var item in quantidadeAlimentares)
@@ -245,7 +283,9 @@ namespace Nutrimeal.Controllers
                     {
                         RefeicaoId = item.RefeicaoId,
                         PerfilAlimentarId = item.PerfilAlimentarId,
-                        Nome = item.Nome
+                        Nome = item.Nome,
+                        TotalCalorias = item.TotalCalorias
+                        
                     });
                 }
 

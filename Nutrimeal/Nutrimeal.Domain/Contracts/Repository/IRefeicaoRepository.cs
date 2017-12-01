@@ -10,6 +10,7 @@ namespace Nutrimeal.Domain.Contracts.Repository
     public interface IRefeicaoRepository : IRepositoryBase
     {
         void Edit<T>(T entity);
+        void EditCaloriasRefeicao<T>(T entity);
         T Get<T>(Guid id);
         List<Refeicao> GetAll(int page = 0, int howMany = 20);
 

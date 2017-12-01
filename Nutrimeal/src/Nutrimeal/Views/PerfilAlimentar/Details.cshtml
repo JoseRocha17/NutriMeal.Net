@@ -11,7 +11,7 @@
 </div>
 
 
-<table id="tabelaPerfilAlimentar" class="table table-hover" >
+<table id="tabelaPerfilAlimentar" class="table table-hover">
     <tr>
         <th>Nome</th>
         <td>@Model.Item.Nome</td>
@@ -29,26 +29,30 @@
 <h2>Refeições</h2>
 
 <table id='refeicaoTable' class='table table-bordered table-hover'>
-@if (@Model.Items.Count != 0)
-{
-    <thead>
-        <tr>
-            <th>Refeicao</th>
-            <th>Opçôes</th>
-            @*<th>Data do Perfil</th>*@
-        </tr>
-    </thead>
+    @if (@Model.Items.Count != 0)
+    {
+        <thead>
+            <tr>
+                <th>Refeicao</th>
+                <th>Total de Caloiras</th>
+                <th>Opçôes</th>
+
+            </tr>
+        </thead>
 
 
 
-  
+
         @foreach (var item in Model.Items)
         {
             <tr>
-                @*<td>@Model.PerfilAlimentarNome</td>*@
-                @*<td>@Model.PerfilAlimentarData.ToString("dd/MM/yyyy")</td>*@
                 <td> @item.Nome </td>
-                @*<td> @item.PerfilAlimentarId </td>*@
+                @if (@item.TotalCalorias > 0)
+                {
+                    <td>@item.TotalCalorias</td>
+
+                }
+
                 <td>
 
                     <a asp-controller="Refeicao"
@@ -79,7 +83,9 @@
                         Adicionar Alimento
                     </a>
 
-                    @Html.ActionLink("Ver Alimentos", "Details", new { RefeicaoId = item.RefeicaoId, RefeicaoNome = item.Nome })
+                   
+
+                    @Html.ActionLink("Ver Alimentos", "Details", new { RefeicaoId = item.RefeicaoId, RefeicaoNome = item.Nome, Calorias = item.TotalCalorias })
 
                 </td>
 
@@ -87,7 +93,7 @@
         }
 
     }
-    else 
+    else
     {
         <tr> Este Planao Alimentar não contém Refeições </tr>
     }
@@ -102,77 +108,123 @@
 </a>
 <hr />
 <br />
+
+
+
+
 @if (@Model.QuantidadesAlimentares.Count() > 0)
 {
     <h2>Alimentos da refeição @Model.RefeicaoNome</h2>
 
-<table id='alimentosRefeicaoTableId' class='table table-bordered table-hover'>
-    <thead>
-        <tr>
-            <th>Alimento</th>
-            <th>Quantidade</th>
-            <th>Opções</th>
-        </tr>
-    </thead>
+            <table id='alimentosRefeicaoTableId' class='table table-bordered table-hover'>
+                <thead>
+                    <tr>
+                        <th>Alimento</th>
+                        <th>Quantidade</th>
+                        <th>Opções</th>
+
+                    </tr>
+                </thead>
 
 
 
 
-        @foreach (var item in Model.QuantidadesAlimentares)
-        {
-            <tr>
-                <td> @item.AlimentoNome </td>
-                <td> @item.Quantidade @item.TipoMedida</td>
-                <td>
+                @foreach (var item in Model.QuantidadesAlimentares)
+                {
+                    <tr>
+                        <td> @item.AlimentoNome </td>
+                        <td> @item.Quantidade @item.TipoMedida</td>
+                        <td>
 
-                    <a asp-controller="QuantidadeAlimentar"
-                       asp-action="Details"
-                       asp-route-id="@item.QuantidadeAlimentarId"
-                       class="badge badge-default badge-pill pull-right">
-                        Detalhes
-                    </a>
+                            <a asp-controller="QuantidadeAlimentar"
+                               asp-action="Details"
+                               asp-route-id="@item.QuantidadeAlimentarId"
+                               class="badge badge-default badge-pill pull-right">
+                                Detalhes
+                            </a>
 
-                    <a asp-controller="QuantidadeAlimentar"
-                       asp-action="Edit"
-                       asp-route-id="@item.QuantidadeAlimentarId"
-                       class="badge badge-default badge-pill pull-right">
-                        Editar
-                    </a>
+                            <a asp-controller="QuantidadeAlimentar"
+                               asp-action="Edit"
+                               asp-route-id="@item.QuantidadeAlimentarId"
+                               class="badge badge-default badge-pill pull-right">
+                                Editar
+                            </a>
 
-                    <a asp-controller="QuantidadeAlimentar"
-                       asp-action="Delete"
-                       asp-route-id="@item.QuantidadeAlimentarId"
-                       class="badge badge-default badge-pill pull-right">
-                        Delete
-                    </a>
+                            <a asp-controller="QuantidadeAlimentar"
+                               asp-action="Delete"
+                               asp-route-id="@item.QuantidadeAlimentarId"
+                               class="badge badge-default badge-pill pull-right">
+                                Delete
+                            </a>
 
-                </td>
+                            
+                            <div class="form-group" id="adicionarCaloriasRefeicoes" style="display: none;">
+                                <form asp-action="EditRefeicaoTotalCalorias" asp-controller="PerfilAlimentar">
+                           
+                                        <input type="hidden" asp-for="@Model.RefeicaoToUpdate.RefeicaoId" value="@item.RefeicaoId" />
+                            
 
-            </tr>
-        }
+                                        <input id="totalCalorias" asp-for="@Model.RefeicaoToUpdate.TotalCalorias" />
+                                 
+                                 
+                                    <button type="submit" class="btn btn-info">Guardar Calorias da refeicao</button>
 
- 
+                                </form>
+                            </div>
 
-    
-</table>
 
-<a onclick="calcularCaloraisRefeicao(document.getElementById('alimentosRefeicaoTableId'))">
-    Adicionar Refeição ao Plano
-</a>
+
+                          
+
+                        </td>
+
+                    </tr>
+                }
+
+
+
+
+            </table>
+
+            <a onclick="calcularCaloraisRefeicao(document.getElementById('alimentosRefeicaoTableId'))">
+                Total de Calorias da Refeicao
+            </a>
+
+            <div class="row" id="divTotalCalorias" style="display: none;">
+                <div class="col-lg-12 col-md-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    <label id="labelResultadoIMC">Total de Calorias da refeicao @Model.RefeicaoNome: </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="col-xs-12 text-center">
+                                <span id="spanResultadoTotalCalorias" class="noResult"></span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
 }
 
 
-@*<div>
-    <h4><b>Peso:</b> @Model.Item.Nome</h4>
-    <h4><b>Data do Objetivo:</b> </h4>
-</div>*@
-<hr />
 
 
-@*<a asp-action="Index"
-   asp-controller="Refeicao"
-   asp-route-id="@Model.Item.PerfilAlimentarId"
-   class="btn btn-primary">
-    Ver Refeições
-</a>*@
+
+
+            @*<a asp-action="Index"
+                   asp-controller="Refeicao"
+                   asp-route-id="@Model.Item.PerfilAlimentarId"
+                   class="btn btn-primary">
+                    Ver Refeições
+                </a>*@
 

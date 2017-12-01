@@ -46,6 +46,25 @@ namespace Nutrimeal.Repository
                 entityInDb.ModifiedAt = DateTime.Now;
 
                 entityInDb.Nome = entityToUpdate.Nome;
+                entityInDb.TotalCalorias = entityToUpdate.TotalCalorias;
+
+
+
+
+                _repositoryContext.Refeicao.Update(entityInDb);
+                _repositoryContext.SaveChanges();
+            }
+        }
+
+        public void EditCaloriasRefeicao<T>(T entity)
+        {
+            var entityToUpdate = entity as Refeicao;
+            var entityInDb = _repositoryContext.Refeicao.Single(o => o.RefeicaoId == entityToUpdate.RefeicaoId);
+            if (entityInDb != null)
+            {
+                entityInDb.ModifiedAt = DateTime.Now;
+
+                entityInDb.TotalCalorias = entityToUpdate.TotalCalorias;
 
 
 

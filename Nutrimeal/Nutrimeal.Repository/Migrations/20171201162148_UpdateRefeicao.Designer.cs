@@ -9,9 +9,10 @@ using Nutrimeal.Domain.Entities;
 namespace Nutrimeal.Repository.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20171201162148_UpdateRefeicao")]
+    partial class UpdateRefeicao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")

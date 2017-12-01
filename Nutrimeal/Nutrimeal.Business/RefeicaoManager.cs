@@ -69,6 +69,12 @@ namespace Nutrimeal.Business
                 _refeicaoRepository.Edit(Code.EfAutoMapperConfig.Mapped.Map<Domain.Entities.Refeicao>(refeicao));
         }
 
+        public void EditCaloriasRefeicao(Models.Refeicao refeicao)
+        {
+            if (Get(refeicao.RefeicaoId) != null)
+                _refeicaoRepository.EditCaloriasRefeicao(Code.EfAutoMapperConfig.Mapped.Map<Domain.Entities.Refeicao>(refeicao));
+        }
+
         public Models.Refeicao Get(Guid id)
         {
             if (id != null)

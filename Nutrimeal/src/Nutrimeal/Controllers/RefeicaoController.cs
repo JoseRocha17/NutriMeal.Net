@@ -56,7 +56,9 @@ namespace Nutrimeal.Controllers
                     {
                         RefeicaoId = item.RefeicaoId,
                         PerfilAlimentarId = item.PerfilAlimentarId,
-                        Nome = item.Nome
+                        Nome = item.Nome,
+                        TotalCalorias = item.TotalCalorias
+                        
                     });
                     }
                 

@@ -10,5 +10,6 @@ namespace Nutrimeal.Models.Refeicao
         public Guid RefeicaoId { get; set; }
         public string Nome { get; set; }
         public Guid PerfilAlimentarId { get; set; }
+        public float TotalCalorias { get; set; }
     }
 }

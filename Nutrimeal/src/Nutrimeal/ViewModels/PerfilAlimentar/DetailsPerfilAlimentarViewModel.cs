@@ -13,7 +13,9 @@ namespace Nutrimeal.ViewModels
         public PerfilAlimentarInList Item { get; set; } = new PerfilAlimentarInList();
         public List<RefeicaoInList> Items { get; set; } = new List<RefeicaoInList>();
         public string RefeicaoNome { get; set; }
+        public float CaloriasRefeicao { get; set; }
 
         public List<QuantidadeAlimentarInList> QuantidadesAlimentares { get; set; } = new List<QuantidadeAlimentarInList>();
+        public RefeicaoInList RefeicaoToUpdate { get; set; } = new RefeicaoInList();
     }
 }
