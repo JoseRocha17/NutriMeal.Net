@@ -12,5 +12,6 @@ namespace Nutrimeal.Domain.Entities
         public string Nome { get; set; }
         public DateTime Data { get; set; }
         public string UserId { get; set; }
+        public float TotalCalorias { get; set; }
     }
 }

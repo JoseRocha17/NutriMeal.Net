@@ -14,21 +14,44 @@
 <table id="tabelaPerfilAlimentar" class="table table-hover">
     <tr>
         <th>Nome</th>
-        <td>@Model.Item.Nome</td>
+        <th>Data Perfil</th>
+        <th>Total Calorias</th>
     </tr>
     <tr>
-        <th>Data do Perfil</th>
+        <td>@Model.Item.Nome</td>
         <td>@Model.Item.Data.ToString("dd/MM/yyyy")</td>
+        <td>@Model.Item.TotalCalorias</td>
     </tr>
+    <tr>
+        <td>
+            <div class="form-group" id="adicionarCaloriasPerfilAlimentar" style="display: none;">
+                <form asp-action="EditPerfilAlimentarTotalCalorias" asp-controller="PerfilAlimentar">
+
+                    <input type="hidden" asp-for="@Model.PerfilToUpdate.PerfilAlimentarId" value="@Model.Item.PerfilAlimentarId" />
+
+                    <input id="totalCaloriasPerfilAlimentar" asp-for="@Model.PerfilToUpdate.TotalCalorias" />
 
 
+                    <button type="submit" class="btn btn-info">Guardar Calorias do Perfil</button>
 
+                </form>
+            </div>
+        </td>
+    </tr>
 </table>
+
+<a onclick="calcularCaloriasPerfilAlimentar(document.getElementById('refeicaoTableId'))">
+    Total de Calorias do Perfil Alimentar
+</a>
+<div>
+    <label>Total de Calorias do Perfil</label>
+    <span id="spanTotalCaloriasPerfil" class="noResult"></span>
+</div>
 
 
 <h2>Refeições</h2>
 
-<table id='refeicaoTable' class='table table-bordered table-hover'>
+<table id='refeicaoTableId' class='table table-bordered table-hover'>
     @if (@Model.Items.Count != 0)
     {
         <thead>
@@ -47,12 +70,7 @@
         {
             <tr>
                 <td> @item.Nome </td>
-                @if (@item.TotalCalorias > 0)
-                {
-                    <td>@item.TotalCalorias</td>
-
-                }
-
+                <td>@item.TotalCalorias</td>
                 <td>
 
                     <a asp-controller="Refeicao"
@@ -83,7 +101,7 @@
                         Adicionar Alimento
                     </a>
 
-                   
+
 
                     @Html.ActionLink("Ver Alimentos", "Details", new { RefeicaoId = item.RefeicaoId, RefeicaoNome = item.Nome, Calorias = item.TotalCalorias })
 
@@ -116,75 +134,74 @@
 {
     <h2>Alimentos da refeição @Model.RefeicaoNome</h2>
 
-            <table id='alimentosRefeicaoTableId' class='table table-bordered table-hover'>
-                <thead>
-                    <tr>
-                        <th>Alimento</th>
-                        <th>Quantidade</th>
-                        <th>Opções</th>
+    <table id='alimentosRefeicaoTableId' class='table table-bordered table-hover'>
+        <thead>
+            <tr>
+                <th>Alimento</th>
+                <th>Quantidade</th>
+                <th>Opções</th>
 
-                    </tr>
-                </thead>
-
-
+            </tr>
+        </thead>
 
 
-                @foreach (var item in Model.QuantidadesAlimentares)
+
+
+        @foreach (var item in Model.QuantidadesAlimentares)
                 {
-                    <tr>
-                        <td> @item.AlimentoNome </td>
-                        <td> @item.Quantidade @item.TipoMedida</td>
-                        <td>
+            <tr>
+                <td> @item.AlimentoNome </td>
+                <td> @item.Quantidade @item.TipoMedida</td>
+                <td>
 
-                            <a asp-controller="QuantidadeAlimentar"
-                               asp-action="Details"
-                               asp-route-id="@item.QuantidadeAlimentarId"
-                               class="badge badge-default badge-pill pull-right">
-                                Detalhes
-                            </a>
+                    <a asp-controller="QuantidadeAlimentar"
+                       asp-action="Details"
+                       asp-route-id="@item.QuantidadeAlimentarId"
+                       class="badge badge-default badge-pill pull-right">
+                        Detalhes
+                    </a>
 
-                            <a asp-controller="QuantidadeAlimentar"
-                               asp-action="Edit"
-                               asp-route-id="@item.QuantidadeAlimentarId"
-                               class="badge badge-default badge-pill pull-right">
-                                Editar
-                            </a>
+                    <a asp-controller="QuantidadeAlimentar"
+                       asp-action="Edit"
+                       asp-route-id="@item.QuantidadeAlimentarId"
+                       class="badge badge-default badge-pill pull-right">
+                        Editar
+                    </a>
 
-                            <a asp-controller="QuantidadeAlimentar"
-                               asp-action="Delete"
-                               asp-route-id="@item.QuantidadeAlimentarId"
-                               class="badge badge-default badge-pill pull-right">
-                                Delete
-                            </a>
-
-                            
-                            <div class="form-group" id="adicionarCaloriasRefeicoes" style="display: none;">
-                                <form asp-action="EditRefeicaoTotalCalorias" asp-controller="PerfilAlimentar">
-                           
-                                        <input type="hidden" asp-for="@Model.RefeicaoToUpdate.RefeicaoId" value="@item.RefeicaoId" />
-                            
-
-                                        <input id="totalCalorias" asp-for="@Model.RefeicaoToUpdate.TotalCalorias" />
-                                 
-                                 
-                                    <button type="submit" class="btn btn-info">Guardar Calorias da refeicao</button>
-
-                                </form>
-                            </div>
+                    <a asp-controller="QuantidadeAlimentar"
+                       asp-action="Delete"
+                       asp-route-id="@item.QuantidadeAlimentarId"
+                       class="badge badge-default badge-pill pull-right">
+                        Delete
+                    </a>
 
 
+                    <div class="form-group" id="adicionarCaloriasRefeicoes" style="display: none;">
+                        <form asp-action="EditRefeicaoTotalCalorias" asp-controller="PerfilAlimentar">
 
-                          
+                            <input type="hidden" asp-for="@Model.RefeicaoToUpdate.RefeicaoId" value="@item.RefeicaoId" />
 
-                        </td>
+                            <input id="totalCaloriasRefeicao" asp-for="@Model.RefeicaoToUpdate.TotalCalorias" />
 
-                    </tr>
-                }
+
+                            <button type="submit" class="btn btn-info">Guardar Calorias da refeicao</button>
+
+                        </form>
+                    </div>
 
 
 
 
-            </table>
+
+                </td>
+
+            </tr>
+        }
+
+
+
+
+    </table>
 
             <a onclick="calcularCaloraisRefeicao(document.getElementById('alimentosRefeicaoTableId'))">
                 Total de Calorias da Refeicao

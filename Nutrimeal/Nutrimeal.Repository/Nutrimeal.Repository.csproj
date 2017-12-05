@@ -172,6 +172,10 @@
     <Compile Include="Migrations\20171201162148_UpdateRefeicao.designer.cs">
       <DependentUpon>20171201162148_UpdateRefeicao.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20171205230202_UpdatePerfilAlimentar.cs" />
+    <Compile Include="Migrations\20171205230202_UpdatePerfilAlimentar.designer.cs">
+      <DependentUpon>20171205230202_UpdatePerfilAlimentar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\RepositoryContextModelSnapshot.cs" />
     <Compile Include="ObjetivosRepository.cs" />
     <Compile Include="PerfilAlimentarRepository.cs" />

@@ -12,3 +12,4 @@ C:\Users\E5731\Documents\GitHub\nutri\NutriMeal.Net\Nutrimeal\Nutrimeal.Models\b
 C:\Users\E5731\Documents\GitHub\nutri\NutriMeal.Net\Nutrimeal\Nutrimeal.Models\bin\Debug\AutoMapper.xml
 C:\Users\E5731\Documents\GitHub\nutri\NutriMeal.Net\Nutrimeal\Nutrimeal.Models\obj\Debug\Nutrimeal.Models.exe
 C:\Users\E5731\Documents\GitHub\nutri\NutriMeal.Net\Nutrimeal\Nutrimeal.Models\obj\Debug\Nutrimeal.Models.pdb
+C:\Users\E5731\Documents\GitHub\nutri\NutriMeal.Net\Nutrimeal\Nutrimeal.Models\obj\Debug\Nutrimeal.Models.csprojResolveAssemblyReference.cache

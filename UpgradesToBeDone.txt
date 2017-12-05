@@ -1,8 +1,8 @@
 ﻿
 //Nutrimeal - Future Implementations
 
--Calcular o total de calorias numa refeicao - +/-
--Gravar as calorias totais de uma refeição em base de dados - +/-
+-Calcular o total de calorias numa refeicao - +/- *1
+-Gravar as calorias totais de uma refeição em base de dados - +/- *2
 -Calcular o total de calorias num plano alimentar
 -Calcular as calorias num alimento (de forma automatica)
 
@@ -22,3 +22,5 @@
 	-Numero de Refeicoes(por dia/semana/mes)
 	
 	
+*1 - Diferenciar kg, e alimentos que sejam liquidos
+*2 - Melhorar design e acesso*

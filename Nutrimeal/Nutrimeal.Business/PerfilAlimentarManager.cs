@@ -42,6 +42,12 @@ namespace Nutrimeal.Business
                 _perfilAlimentarRepository.Edit(Code.EfAutoMapperConfig.Mapped.Map<Domain.Entities.PerfilAlimentar>(perfilAlimentar));
         }
 
+        public void EditCaloriasPerfilAlimentar(Models.PerfilAlimentar perfilAlimentar)
+        {
+            if (Get(perfilAlimentar.PerfilAlimentarId) != null)
+                _perfilAlimentarRepository.EditCaloriasPerfilAlimentar(Code.EfAutoMapperConfig.Mapped.Map<Domain.Entities.PerfilAlimentar>(perfilAlimentar));
+        }
+
         public Models.PerfilAlimentar Get(Guid id)
         {
             if (id != null)

@@ -180,7 +180,38 @@ namespace Nutrimeal.Controllers
                     RefeicaoToUpdate = input
                 });
             }
-            return RedirectToAction("Index", "Refeicao");
+
+                var refeicao = _refeicaoManager.Get(input.RefeicaoId);
+                var perfilAlimentar = _perfilAlimentarManager.Get(refeicao.PerfilAlimentarId);
+                var perfilAlimentarId = perfilAlimentar.PerfilAlimentarId;
+               
+
+            return RedirectToAction("Details/"+ perfilAlimentarId, "PerfilAlimentar");
+
+        }
+
+        [HttpPost]
+        public IActionResult EditPerfilAlimentarTotalCalorias([Bind(Prefix = "PerfilToUpdate")] PerfilAlimentarInList input)
+        {
+            if (ModelState.IsValid)
+            {
+
+                _perfilAlimentarManager.EditCaloriasPerfilAlimentar(ServicesAutoMapperConfig.Mapped.Map<PerfilAlimentar>(input));
+            }
+            else
+            {
+                return View(new DetailsPerfilAlimentarViewModel
+                {
+                    PerfilToUpdate = input
+                });
+            }
+
+            //var refeicao = _refeicaoManager.Get(input.RefeicaoId);
+            //var perfilAlimentar = _perfilAlimentarManager.Get(refeicao.PerfilAlimentarId);
+            var perfilAlimentarId = input.PerfilAlimentarId;
+
+
+            return RedirectToAction("Details/" + perfilAlimentarId, "PerfilAlimentar");
 
         }
 

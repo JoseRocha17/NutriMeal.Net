@@ -16,5 +16,6 @@ namespace Nutrimeal.Models.PerfilAlimentar
         public DateTime Data { get; set; }
         public string UserId { get; set; }
         public string UserEmail { get; set; }
+        public float TotalCalorias { get; set; }
     }
 }
