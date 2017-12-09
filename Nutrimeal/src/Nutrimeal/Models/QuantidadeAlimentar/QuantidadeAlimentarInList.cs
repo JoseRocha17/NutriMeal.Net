@@ -12,6 +12,7 @@ namespace Nutrimeal.Models.QuantidadeAlimentar
         public TipoQuantidade TipoMedida { get; set; }
         public Guid AlimentoId { get; set; }
         public string AlimentoNome { get; set; }
+        public float CaloriasDoAlimento { get; set; }
         public Guid RefeicaoId { get; set; }
         public string RefeicaoName { get; set; }
     }

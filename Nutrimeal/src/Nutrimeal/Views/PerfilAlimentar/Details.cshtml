@@ -5,6 +5,7 @@
 }
 
 <script src="~/js/Calculos/calcularCaloriasRefeicao.js"></script>
+<script src="~/js/Calculos/CalcularCaloriasPerfil.js"></script>
 
 <div>
     <h1>Detalhes</h1>
@@ -138,6 +139,7 @@
         <thead>
             <tr>
                 <th>Alimento</th>
+                <th>Calorias do Alimento</th>
                 <th>Quantidade</th>
                 <th>Opções</th>
 
@@ -151,6 +153,7 @@
                 {
             <tr>
                 <td> @item.AlimentoNome </td>
+                <td> @item.CaloriasDoAlimento</td>
                 <td> @item.Quantidade @item.TipoMedida</td>
                 <td>
 

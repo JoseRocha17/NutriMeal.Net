@@ -12,6 +12,7 @@ namespace Nutrimeal.Domain.Contracts.Manager
         Guid Create(Models.Alimento alimento);
         Task CreateAsync(Alimento alimento);
         void Edit(Models.Alimento alimento);
+        void EditCaloriasAlimento(Models.Alimento alimento);
         Guid Delete(Models.Alimento alimento);
         Models.Alimento Get(Guid id);
         //List<Objetivos> GetAll(Guid id);

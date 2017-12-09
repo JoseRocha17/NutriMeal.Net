@@ -9,5 +9,6 @@ namespace Nutrimeal.ViewModels
     public class DetailsAlimentoViewModel : BaseViewModel
     {
         public AlimentoInList Item { get; set; } = new AlimentoInList();
+        public AlimentoInList AlimentoToUpdate { get; set; } = new AlimentoInList();
     }
 }

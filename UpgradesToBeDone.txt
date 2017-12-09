@@ -3,8 +3,8 @@
 
 -Calcular o total de calorias numa refeicao - +/- *1
 -Gravar as calorias totais de uma refeição em base de dados - +/- *2
--Calcular o total de calorias num plano alimentar
--Calcular as calorias num alimento (de forma automatica)
+-Calcular o total de calorias num plano alimentar - +/-
+-Calcular as calorias num alimento
 
 -Calcular o total de calorias gastas num exercicio fisico
 -Calcular o total de calorias gastas num perfil fisico
@@ -20,6 +20,9 @@
 	-Calorias Acumuladas
 	-Tempo de Exercicio
 	-Numero de Refeicoes(por dia/semana/mes)
+	
+-Criar Planos alimentares de forma automatica
+-Criar Planos fisicos de forma automatica
 	
 	
 *1 - Diferenciar kg, e alimentos que sejam liquidos

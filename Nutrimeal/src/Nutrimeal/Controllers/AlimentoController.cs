@@ -130,6 +130,31 @@ namespace Nutrimeal.Controllers
         }
 
 
+        [HttpPost]
+        public IActionResult EditAlimentoCalorias([Bind(Prefix = "AlimentoToUpdate")] AlimentoInList input)
+        {
+            if (ModelState.IsValid)
+            {
+
+                _alimentoManager.EditCaloriasAlimento(ServicesAutoMapperConfig.Mapped.Map<Alimento>(input));
+            }
+            else
+            {
+                return View(new DetailsAlimentoViewModel
+                {
+                    AlimentoToUpdate = input
+                });
+            }
+
+            //var refeicao = _refeicaoManager.Get(input.RefeicaoId);
+            //var perfilAlimentar = _perfilAlimentarManager.Get(refeicao.PerfilAlimentarId);
+            var alimentoId = input.AlimentoId;
+
+
+            return RedirectToAction("Details/" + alimentoId, "Alimento");
+
+        }
+
         public ActionResult Delete(Guid id)
         {
 

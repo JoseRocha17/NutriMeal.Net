@@ -1,5 +1,7 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="js/app.js" />
+/// <reference path="js/calculos/calcularcaloriasalimento.js" />
+/// <reference path="js/calculos/calcularcaloriasperfil.js" />
 /// <reference path="js/calculos/calcularcaloriasrefeicao.js" />
 /// <reference path="js/calculos/imc.js" />
 /// <reference path="js/site.js" />

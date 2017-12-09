@@ -6,3 +6,11 @@ C:\Users\E5731\documents\visual studio 2015\Projects\Nutrimeal\Nutrimeal.Common\
 C:\Users\E5731\documents\visual studio 2015\Projects\Nutrimeal\Nutrimeal.Common\obj\Debug\Nutrimeal.Common.exe
 C:\Users\E5731\documents\visual studio 2015\Projects\Nutrimeal\Nutrimeal.Common\obj\Debug\Nutrimeal.Common.pdb
 C:\Users\E5731\documents\visual studio 2015\Projects\Nutrimeal\Nutrimeal.Common\obj\Debug\Nutrimeal.Common.csprojResolveAssemblyReference.cache
+C:\Users\E5731\Documents\GitHub\nutri\NutriMeal.Net\Nutrimeal\Nutrimeal.Common\bin\Debug\Nutrimeal.Common.exe.config
+C:\Users\E5731\Documents\GitHub\nutri\NutriMeal.Net\Nutrimeal\Nutrimeal.Common\bin\Debug\Nutrimeal.Common.exe
+C:\Users\E5731\Documents\GitHub\nutri\NutriMeal.Net\Nutrimeal\Nutrimeal.Common\bin\Debug\Nutrimeal.Common.pdb
+C:\Users\E5731\Documents\GitHub\nutri\NutriMeal.Net\Nutrimeal\Nutrimeal.Common\bin\Debug\Newtonsoft.Json.dll
+C:\Users\E5731\Documents\GitHub\nutri\NutriMeal.Net\Nutrimeal\Nutrimeal.Common\bin\Debug\Newtonsoft.Json.xml
+C:\Users\E5731\Documents\GitHub\nutri\NutriMeal.Net\Nutrimeal\Nutrimeal.Common\obj\Debug\Nutrimeal.Common.csprojResolveAssemblyReference.cache
+C:\Users\E5731\Documents\GitHub\nutri\NutriMeal.Net\Nutrimeal\Nutrimeal.Common\obj\Debug\Nutrimeal.Common.exe
+C:\Users\E5731\Documents\GitHub\nutri\NutriMeal.Net\Nutrimeal\Nutrimeal.Common\obj\Debug\Nutrimeal.Common.pdb

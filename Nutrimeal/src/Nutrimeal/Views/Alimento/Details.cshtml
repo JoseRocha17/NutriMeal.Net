@@ -3,11 +3,13 @@
     ViewData["Title"] = Model.PageName;
 }
 
+<script src="~/js/Calculos/CalcularCaloriasAlimento.js"></script>
+
 <div>
     <h1>Detalhes</h1>
 </div>
 
-<table class="table table-hover">
+<table id="detalheAlimentoTableId" class="table table-hover">
 
     <tr>
         <th>Nome</th>
@@ -56,21 +58,22 @@
 
 
 
-
 </table>
 
+<div class="form-group" id="adicionarCaloriasAlimento" style="display: none;">
+    <form asp-action="EditAlimentoCalorias" asp-controller="Alimento">
 
-    @*<div>
-        <h4><b>Nome:</b> @Model.Item.Nome</h4>
-        <h4><b>Calorias:</b> @Model.Item.Calorias</h4>
-        <h4><b>Gordura:</b> @Model.Item.Gordura</h4>
-        <h4><b>Colestrol:</b> @Model.Item.Colestrol</h4>
-        <h4><b>Sódio:</b> @Model.Item.Sodio</h4>
-        <h4><b>Potassio:</b> @Model.Item.Potassio</h4>
-        <h4><b>Carboidratos:</b> @Model.Item.Carboidrato</h4>
-        <h4><b>Fibra:</b> @Model.Item.Fibra</h4>
-        <h4><b>Açucar:</b> @Model.Item.Acucar</h4>
-        <h4><b>Proteina:</b> @Model.Item.Proteina</h4>
-        <h4><b>Grupo:</b> @Model.Item.Grupo</h4>
-    </div>*@
+        <input type="hidden" asp-for="@Model.AlimentoToUpdate.AlimentoId" value="@Model.Item.AlimentoId" />
+
+        <input id="totalCaloriasAlimento" asp-for="@Model.AlimentoToUpdate.Calorias" />
+
+
+        <button type="submit" class="btn btn-info">Guardar Calorias do Alimento</button>
+
+    </form>
+</div>
+
+<a onclick="calcularCaloriasAlimento(document.getElementById('detalheAlimentoTableId'))">
+    Total de Calorias do Alimento
+</a>
 

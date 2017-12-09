@@ -282,7 +282,9 @@ namespace Nutrimeal.Controllers
                         TipoMedida = item.TipoMedida,
                         RefeicaoId = item.RefeicaoId,
                         AlimentoId = item.AlimentoId,
-                        AlimentoNome = alimento.Nome
+                        AlimentoNome = alimento.Nome,
+                        CaloriasDoAlimento = alimento.Calorias
+                       
                     });
                 }
             }

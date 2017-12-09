@@ -98,5 +98,21 @@ namespace Nutrimeal.Repository
         {
             throw new NotImplementedException();
         }
+
+        public void EditCaloriasAlimento<T>(T entity)
+        {
+            var entityToUpdate = entity as Alimento;
+            var entityInDb = _repositoryContext.Alimento.Single(o => o.AlimentoId == entityToUpdate.AlimentoId);
+            if (entityInDb != null)
+            {
+                entityInDb.ModifiedAt = DateTime.Now;
+
+
+                entityInDb.Calorias = entityToUpdate.Calorias;
+
+                _repositoryContext.Alimento.Update(entityInDb);
+                _repositoryContext.SaveChanges();
+            }
+        }
     }
 }
